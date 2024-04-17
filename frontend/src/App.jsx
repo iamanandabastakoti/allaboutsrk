@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div className='flex justify-center items-center h-screen text-5xl'>All About SRK</div>
+    <div className='min-h-screen'>
+      <Navbar />
+    </div>
   )
 }
 
