@@ -7,6 +7,7 @@ export default {
         Anta: ["Anta", "sans-serif"],
         MontserratAlternate: ["Montserrat Alternates", "sans-serif"],
         Prompt: ["Prompt", "sans-serif"],
+        Poppins: ["Poppins", "sans-serif"],
         Roboto: ["Roboto", "sans-serif"],
       },
       colors: {
