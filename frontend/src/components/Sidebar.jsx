@@ -1,14 +1,40 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
-const Sidebar = ({ sidebar }) => {
+const Sidebar = ({ sidebar, toggleSidebar }) => {
+    const sidebarItems = [
+        {
+            path: '/',
+            title: 'Home'
+        },
+        {
+            path: '/filmography',
+            title: 'Filmography'
+        },
+        {
+            path: '/about-us',
+            title: 'About Us'
+        },
+        {
+            path: '/more',
+            title: 'More'
+        },
+    ]
     return (
-        <div className={`fixed z-[999] top-0 ${sidebar ? 'left-0' : 'left-[-100%]'} duration-500 pt-14 px-3 w-full h-screen bg-brandColor text-primaryBg`}>
-            <ul className='flex flex-col gap-1 text-xl'>
-                <li className='py-2 px-3 border-b border-borderColor'>Home</li>
-                <li className='py-2 px-3 border-b border-borderColor'>Filmography</li>
-                <li className='py-2 px-3 border-b border-borderColor'>About Us</li>
-                <li className='py-2 px-3 border-b border-borderColor'>More</li>
-            </ul>
+        <div className={`fixed z-[999] top-0 ${sidebar ? 'left-0' : 'left-[-100%]'} duration-700 pt-14 px-3 w-full h-screen bg-[#32127A] text-primaryBg`}>
+            <div className='flex flex-col gap-3 text-xl'>
+                {
+                    sidebarItems.map((props) => {
+                        return (
+                            <NavLink className={({ isActive }) => [
+                                `py-3 px-3 border-b border-borderColor ${isActive && 'px-4 border-b-4 border-l-4'} duration-500`
+                            ]} to={props.path} onClick={() => toggleSidebar()}>
+                                {props.title}
+                            </NavLink>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
