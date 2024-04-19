@@ -14,7 +14,7 @@ const App = () => {
   }
   return (
     <div className='min-h-screen font-Poppins'>
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar sidebar={sidebar} toggleSidebar={toggleSidebar} />
       <div className='pt-16 px-2'>
         <Sidebar sidebar={sidebar} toggleSidebar={toggleSidebar} />
         <Routes>
