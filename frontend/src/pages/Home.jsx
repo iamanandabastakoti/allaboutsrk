@@ -32,7 +32,7 @@ const Home = () => {
         },
     ]
     return (
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 pt-2'>
             <div className='flex flex-col items-center gap-2'>
                 <img className='w-44 h-44 object-cover rounded-lg' src="/srk-pic.webp" alt="SRK" />
                 <div className='flex flex-col items-center text-center gap-2 p-2'>

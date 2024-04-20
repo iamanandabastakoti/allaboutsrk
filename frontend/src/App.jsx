@@ -14,7 +14,7 @@ const App = () => {
     <sidebarContext.Provider value={{ sidebar, setSidebar }}>
       <div className='min-h-screen font-Poppins'>
         <Navbar />
-        <div className='pt-16 px-2 w-full'>
+        <div className='pt-16 pb-6 px-3 w-full'>
           <Sidebar />
           <Routes>
             <Route index element={<Home />} />
