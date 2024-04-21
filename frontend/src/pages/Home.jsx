@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaInstagram, FaXTwitter, FaFacebook } from "react-icons/fa6";
 
 const Home = () => {
@@ -31,6 +31,10 @@ const Home = () => {
             content: "SRK earned critical acclaim for several movies like Devdas (2002), Swades (2004), Chak De! India (2007) and My Name Is Khan (2010). Further commercial successes came with the romantic dramas Om Shanti Om (2007) and Rab Ne Bana Di Jodi (2008), and with his expansion to comedies in Chennai Express (2013) and Happy New Year (2014). Following a brief setback with some of his films like Fan(2016), Jab Harry Met Sejal(2017) and Zero(2018) not performing very well at the box-office, SRK made a super comeback with the 2023 action films Pathaan and Jawan, both of which becoming the highest grossing Hindi films after their release. With Dunki set to release on 22 December, 2023 which consists of the long awaited combination of SRK and the ace director Rajkumari Hirani, SRK is again set to conquer the box-office and end the year 2023 with 3 All Time Grossers writing his comeback story in the history books."
         },
     ]
+
+    useEffect(() => {
+        window.scrollTo({ top: '0', behavior: 'smooth' });
+    }, []);
     return (
         <div className='flex flex-col gap-4 pt-2'>
             <div className='flex flex-col items-center gap-2'>

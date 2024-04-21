@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const AboutUs = () => {
+
+  useEffect(() => {
+    window.scrollTo({ top: '0', behavior: 'smooth' });
+  }, []);
   return (
     <div className='text-justify flex flex-col gap-2'>
       <p>
