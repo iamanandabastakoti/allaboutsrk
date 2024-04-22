@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaRegCopyright, FaGithub, FaInstagram, FaLinkedinIn, FaFacebook } from "react-icons/fa6";
+import { FaRegCopyright, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 const Footer = () => {
     const mySocials = [
@@ -17,7 +17,7 @@ const Footer = () => {
         },
     ]
     return (
-        <div className='bg-brandColor text-primaryBg min-h-14 flex flex-col justify-center items-center p-3 text-[12px] gap-4'>
+        <div className='bg-brandColor text-primaryBg min-h-14 flex flex-col justify-center items-center py-4 text-[12px] gap-2'>
             <div className='flex gap-1 items-center'>
                 <FaRegCopyright /> 2024 &nbsp; All About SRK - All Rights Reserved
             </div>

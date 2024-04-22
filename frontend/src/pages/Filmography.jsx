@@ -43,22 +43,64 @@ const Filmography = () => {
   return (
     <div className='flex flex-col gap-3'>
       <h2 className='text-2xl font-MontserratAlternate font-semibold underline'>Filmography</h2>
-      <div className='flex flex-col gap-2 pl-2'>
-        <h4 className='text-md font-semibold'>Known For</h4>
-        <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
-          {/* movie card start */}
-          {
-            knownFor.map((props) => {
-              return (
-                <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
-                  <img className='rounded-lg object-cover' src={props.image} alt="" />
-                  <span className='px-2 text-sm'>{props.title}</span>
-                </Link>
-              )
-            })
-          }
-          {/* movie card end */}
+      <div className='flex flex-col gap-8'>
+        {/* known for section starts */}
+        <div className='flex flex-col gap-2 pl-2'>
+          <h4 className='text-xl font-semibold'>Known For</h4>
+          <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
+            {/* movie card start */}
+            {
+              knownFor.map((props) => {
+                return (
+                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                    <img className='rounded-lg object-cover' src={props.image} alt="" />
+                    <span className='px-2 text-sm'>{props.title}</span>
+                  </Link>
+                )
+              })
+            }
+            {/* movie card end */}
+          </div>
         </div>
+        {/* known for section ends */}
+        {/* all movies section starts */}
+        <div className='flex flex-col gap-2 pl-2'>
+          <h4 className='text-xl font-semibold'>All Movies</h4>
+          <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
+            {/* movie card start */}
+            {
+              knownFor.map((props) => {
+                return (
+                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                    <img className='rounded-lg object-cover' src={props.image} alt="" />
+                    <span className='px-2 text-sm'>{props.title}</span>
+                  </Link>
+                )
+              })
+            }
+            {/* movie card end */}
+          </div>
+        </div>
+        {/* all movies section ends */}
+        {/* action movies section starts */}
+        <div className='flex flex-col gap-2 pl-2'>
+          <h4 className='text-xl font-semibold'>Action Movies</h4>
+          <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
+            {/* movie card start */}
+            {
+              knownFor.map((props) => {
+                return (
+                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                    <img className='rounded-lg object-cover' src={props.image} alt="" />
+                    <span className='px-2 text-sm'>{props.title}</span>
+                  </Link>
+                )
+              })
+            }
+            {/* movie card end */}
+          </div>
+        </div>
+        {/* action movies section ends */}
       </div>
     </div>
   )
