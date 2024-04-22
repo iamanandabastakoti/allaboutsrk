@@ -9,6 +9,7 @@ import More from './pages/More'
 import { sidebarContext } from './context/context'
 import SingleMovie from './pages/SingleMovie'
 import { IoChevronBackOutline } from "react-icons/io5";
+import Footer from './components/Footer'
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
     <sidebarContext.Provider value={{ sidebar, setSidebar }}>
       <div className='min-h-screen font-Poppins'>
         <Navbar />
-        <div className='pt-16 pb-6 px-3 w-full'>
+        <div className='pt-16 pb-6 px-3 w-full min-h-screen'>
           <Sidebar />
           {
             appPath.pathname !== '/' &&
@@ -39,6 +40,7 @@ const App = () => {
             <Route path='/more' element={<More />} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </sidebarContext.Provider>
   )
