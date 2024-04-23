@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const SingleMovie = () => {
     const movieCast = [
@@ -48,10 +48,14 @@ const SingleMovie = () => {
             character: "Preeti Singh, Kuljeet's Sister",
         },
     ]
+
+    useEffect(() => {
+        window.scrollTo({ top: '0', behavior: 'smooth' });
+    }, []);
     return (
         <div>
             <div className='overflow-hidden relative flex items-center w-full min-h-60'>
-                <img className='left-2 relative z-50 w-28 h-40 object-cpver rounded-xl' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
+                <img className='left-2 relative z-50 w-28 h-40 object-cver rounded-xl' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
                 <img className='absolute z-40 object-contain' src="https://media.themoviedb.org/t/p/w533_and_h300_bestv2/90ez6ArvpO8bvpyIngBuwXOqJm5.jpg" alt="bg-image" />
             </div>
             <div className='flex flex-col gap-4'>

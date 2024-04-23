@@ -17,7 +17,7 @@ const Footer = () => {
         },
     ]
     return (
-        <div className='bg-brandColor text-primaryBg min-h-14 flex flex-col justify-center items-center py-4 text-[12px] gap-2'>
+        <div className='bg-navbarBg text-primaryBg min-h-14 flex flex-col justify-center items-center py-4 text-[12px] gap-2'>
             <div className='flex gap-1 items-center'>
                 <FaRegCopyright /> 2024 &nbsp; All About SRK - All Rights Reserved
             </div>

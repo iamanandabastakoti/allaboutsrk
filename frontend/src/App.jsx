@@ -10,6 +10,7 @@ import { sidebarContext } from './context/context'
 import SingleMovie from './pages/SingleMovie'
 import { IoChevronBackOutline } from "react-icons/io5";
 import Footer from './components/Footer'
+import SingleGenre from './pages/SingleGenre'
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -35,6 +36,7 @@ const App = () => {
             <Route path='/filmography'>
               <Route index element={<Filmography />} />
               <Route path='/filmography/single-movie' element={<SingleMovie />} />
+              <Route path='/filmography/single-genre' element={<SingleGenre />} />
             </Route>
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/more' element={<More />} />

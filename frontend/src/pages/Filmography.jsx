@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 const Filmography = () => {
 
@@ -46,7 +47,13 @@ const Filmography = () => {
       <div className='flex flex-col gap-8'>
         {/* known for section starts */}
         <div className='flex flex-col gap-2 pl-2'>
-          <h4 className='text-xl font-semibold'>Known For</h4>
+          <div className='flex justify-between'>
+            <h4 className='text-xl font-semibold'>Known For</h4>
+            <Link to={'/filmography/single-genre'} className='text-sm flex items-center text-brandColor font-semibold'>
+              View All
+              <MdOutlineArrowForwardIos />
+            </Link>
+          </div>
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
@@ -65,7 +72,13 @@ const Filmography = () => {
         {/* known for section ends */}
         {/* all movies section starts */}
         <div className='flex flex-col gap-2 pl-2'>
-          <h4 className='text-xl font-semibold'>All Movies</h4>
+          <div className='flex justify-between'>
+            <h4 className='text-xl font-semibold'>All Movies</h4>
+            <Link to={'/filmography/single-genre'} className='text-sm flex items-center text-brandColor font-semibold'>
+              View All
+              <MdOutlineArrowForwardIos />
+            </Link>
+          </div>
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
@@ -84,7 +97,13 @@ const Filmography = () => {
         {/* all movies section ends */}
         {/* action movies section starts */}
         <div className='flex flex-col gap-2 pl-2'>
-          <h4 className='text-xl font-semibold'>Action Movies</h4>
+          <div className='flex justify-between'>
+            <h4 className='text-xl font-semibold'>Action Movies</h4>
+            <Link to={'/filmography/single-genre'} className='text-sm flex items-center text-brandColor font-semibold'>
+              View All
+              <MdOutlineArrowForwardIos />
+            </Link>
+          </div>
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
