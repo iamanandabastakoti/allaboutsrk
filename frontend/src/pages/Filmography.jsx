@@ -59,7 +59,7 @@ const Filmography = () => {
             {
               knownFor.map((props) => {
                 return (
-                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
                     <img className='rounded-lg object-cover' src={props.image} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>
@@ -84,7 +84,7 @@ const Filmography = () => {
             {
               knownFor.map((props) => {
                 return (
-                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
                     <img className='rounded-lg object-cover' src={props.image} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>
@@ -109,7 +109,7 @@ const Filmography = () => {
             {
               knownFor.map((props) => {
                 return (
-                  <Link to={'/filmography/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
                     <img className='rounded-lg object-cover' src={props.image} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>

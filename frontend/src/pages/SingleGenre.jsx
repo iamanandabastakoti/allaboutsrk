@@ -48,7 +48,7 @@ const SingleGenre = () => {
         {
           knownFor.map((props) => {
             return (
-              <Link to={'/filmography/single-movie'} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600'>
+              <Link to={'/filmography/movie/single-movie'} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600'>
                 <img className='w-2/6 h-44 object-cover' src={props.image} alt="poster" />
                 <div className='flex flex-col justify-around text-sm'>
                   <h5 className='font-semibold text-xl text-brandColor'>{props.title}</h5>

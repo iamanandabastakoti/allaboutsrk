@@ -12,6 +12,9 @@ import { IoChevronBackOutline } from "react-icons/io5";
 import Footer from './components/Footer'
 import SingleGenre from './pages/SingleGenre'
 
+import { Bounce, Slide, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
   const appPath = useLocation();
@@ -35,14 +38,28 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path='/filmography'>
               <Route index element={<Filmography />} />
-              <Route path='/filmography/single-movie' element={<SingleMovie />} />
               <Route path='/filmography/single-genre' element={<SingleGenre />} />
+              <Route path='/filmography/movie/single-movie' element={<SingleMovie />} />
             </Route>
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/more' element={<More />} />
           </Routes>
         </div>
         <Footer />
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          limit={2}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Slide}
+        />
       </div>
     </sidebarContext.Provider>
   )
