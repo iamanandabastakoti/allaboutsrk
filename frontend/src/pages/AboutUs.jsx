@@ -7,6 +7,7 @@ const AboutUs = () => {
   }, []);
   return (
     <div className='text-justify flex flex-col gap-2'>
+      <h5 className='text-2xl text-center font-MontserratAlternate font-semibold underline'>About Us</h5>
       <p>
         Welcome to <span className='text-brandColor font-bold font-MontserratAlternate text-lg'>All About SRK</span>, your ultimate destination for all things related to the legendary Indian actor, Shah Rukh Khan. Born on November 2, 1965, in New Delhi, India. Shah Rukh Khan, often referred to as the "King of Bollywood", has carved an indelible mark in the world of entertainment. This website is a heartfelt tribute to his extraordinary journey, both on and off the screen. Here, we delve deep into the enigmatic persona of SRK, offering you an immersive experience into his captivating world.
       </p>

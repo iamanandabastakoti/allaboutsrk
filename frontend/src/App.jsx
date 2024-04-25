@@ -12,8 +12,9 @@ import { IoChevronBackOutline } from "react-icons/io5";
 import Footer from './components/Footer'
 import SingleGenre from './pages/SingleGenre'
 
-import { Bounce, Slide, ToastContainer } from 'react-toastify'
+import { Slide, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Admin from './pages/admin/Admin'
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
         <div className='pt-16 pb-6 px-3 w-full min-h-screen'>
           <Sidebar />
           {
-            appPath.pathname !== '/' &&
+            appPath.pathname !== ('/' && '/admin') &&
             <div className='text-3xl text-primaryBg bg-brandColor p-1 w-fit rounded-lg mb-2' onClick={goBack}>
               <IoChevronBackOutline />
             </div>
@@ -43,12 +44,13 @@ const App = () => {
             </Route>
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/more' element={<More />} />
+            <Route path='/admin' element={<Admin />} />
           </Routes>
         </div>
         <Footer />
         <ToastContainer
           position="bottom-center"
-          autoClose={3000}
+          autoClose={2000}
           limit={2}
           hideProgressBar={false}
           newestOnTop={false}

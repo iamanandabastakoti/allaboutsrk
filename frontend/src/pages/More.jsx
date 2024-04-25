@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const More = () => {
 
   const sendMessage = () => {
-    toast.error('Cannot Send Messsage Right Now!');
+    toast.error('Cannot Send Message Right Now!');
   }
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const More = () => {
   return (
     <div>
       <div>
-        <h5 className='text-2xl font-semibold'>Contact-US</h5>
+        <h5 className='text-2xl text-center font-MontserratAlternate font-semibold underline'>Contact Us</h5>
         <form className='flex flex-col gap-3'>
           <div>
             <label className='px-2' htmlFor="">Name</label>

@@ -43,7 +43,7 @@ const Filmography = () => {
   ]
   return (
     <div className='flex flex-col gap-3'>
-      <h2 className='text-2xl font-MontserratAlternate font-semibold underline'>Filmography</h2>
+      <h5 className='text-2xl text-center font-MontserratAlternate font-semibold underline'>Filmography</h5>
       <div className='flex flex-col gap-8'>
         {/* known for section starts */}
         <div className='flex flex-col gap-2 pl-2'>
