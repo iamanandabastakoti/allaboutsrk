@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import AdminHome from './AdminHome';
 
 const Admin = () => {
     const [showPass, setShowPass] = useState(false);
@@ -43,11 +44,11 @@ const Admin = () => {
         }
     }, []);
     return (
-        <div className='flex flex-col min-h-[80vh]'>
+        <div className='flex flex-col min-h-screen'>
             {
                 !adminLogged ?
-                    <div className='p-4 bg-brandColor py-4 rounded-lg text-primaryBg flex flex-col justify-center min-h-[80vh] gap-4'>
-                        <h5 className='text-xl font-semibold text-center'>Log In</h5>
+                    <div className='p-4 bg-brandColor py-4 rounded-lg text-primaryBg flex flex-col justify-center min-h-screen gap-4'>
+                        <h5 className='text-2xl font-semibold text-center font-MontserratAlternate underline'>Admin Log In</h5>
                         <form className='flex flex-col gap-3'>
                             {
                                 emptyField &&
@@ -82,7 +83,7 @@ const Admin = () => {
                         </button>
                     </div>
                     :
-                    <div>Welcome Admin</div>
+                    <AdminHome />
             }
         </div>
     )

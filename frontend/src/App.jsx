@@ -26,8 +26,11 @@ const App = () => {
   return (
     <sidebarContext.Provider value={{ sidebar, setSidebar }}>
       <div className='min-h-screen font-Poppins'>
-        <Navbar />
-        <div className='pt-16 pb-6 px-3 w-full min-h-screen'>
+        {
+          appPath.pathname !== ('/admin') &&
+          <Navbar />
+        }
+        <div className={`${appPath.pathname !== ('/admin') && 'pt-16 pb-6 px-3'} w-full min-h-screen`}>
           <Sidebar />
           {
             appPath.pathname !== ('/' && '/admin') &&
@@ -47,7 +50,10 @@ const App = () => {
             <Route path='/admin' element={<Admin />} />
           </Routes>
         </div>
-        <Footer />
+        {
+          appPath.pathname !== ('/admin') &&
+          <Footer />
+        }
         <ToastContainer
           position="bottom-center"
           autoClose={2000}
