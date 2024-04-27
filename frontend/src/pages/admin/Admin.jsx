@@ -21,8 +21,7 @@ const Admin = () => {
     const logIN = () => {
         if ((data.username && data.password) !== '') {
             if (data.username === `${import.meta.env.VITE_USERNAME}` && data.password === `${import.meta.env.VITE_PASSWORD}`) {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('password', data.password);
+                localStorage.setItem('authData', JSON.stringify(data));
                 setAdminLogged(true);
                 setWrongAuth(false);
                 setEmptyField(false);
@@ -37,9 +36,8 @@ const Admin = () => {
     }
 
     useEffect(() => {
-        const localUsername = localStorage.getItem('username');
-        const localPassword = localStorage.getItem('password');
-        if (localUsername === `${import.meta.env.VITE_USERNAME}` && localPassword === `${import.meta.env.VITE_PASSWORD}`) {
+        const localAuthData = JSON.parse(localStorage.getItem('authData'));
+        if (localAuthData?.username === `${import.meta.env.VITE_USERNAME}` && localAuthData?.password === `${import.meta.env.VITE_PASSWORD}`) {
             setAdminLogged(true);
         }
     }, []);
@@ -47,7 +45,7 @@ const Admin = () => {
         <div className='flex flex-col min-h-screen'>
             {
                 !adminLogged ?
-                    <div className='p-4 bg-brandColor py-4 rounded-lg text-primaryBg flex flex-col justify-center min-h-screen gap-4'>
+                    <div className='p-4 bg-brandColor py-4 text-primaryBg flex flex-col justify-center min-h-screen gap-4'>
                         <h5 className='text-2xl font-semibold text-center font-MontserratAlternate underline'>Admin Log In</h5>
                         <form className='flex flex-col gap-3'>
                             {

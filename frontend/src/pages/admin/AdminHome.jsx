@@ -13,6 +13,9 @@ const AdminHome = () => {
                         <h5 className='flex flex-col text-sm'>Welcome <span className='text-2xl font-semibold'>Ananda</span></h5>
                     </div>
                 </div>
+                <div className='p-2'>
+                    Dashboard
+                </div>
             </div>
         </div>
     )

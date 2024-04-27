@@ -3,6 +3,7 @@ import { SlLogout } from "react-icons/sl";
 import { RxDashboard } from "react-icons/rx";
 import { ImFilm } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
+import { TiMessages } from "react-icons/ti";
 
 const AdminSidebar = () => {
     const sidebarLists = [
@@ -17,6 +18,10 @@ const AdminSidebar = () => {
         {
             logo: <FaUsers />,
             name: 'Users'
+        },
+        {
+            logo: <TiMessages />,
+            name: 'Messages'
         },
     ]
     return (
@@ -42,7 +47,7 @@ const AdminSidebar = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center text-xl min-h-20 w-full px-6 pl-10'>
-                <div className='w-full rounded-lg min-h-10 flex justify-start px-2 items-center gap-2 cursor-pointer hover:bg-borderColor hover:text-brandColor hover:scale-105 duration-300'>
+                <div className='w-full rounded-lg min-h-10 flex justify-start px-2 items-center gap-2 cursor-pointer hover:bg-borderColor hover:text-brandColor hover:scale-105 duration-300' onClick={() => localStorage.removeItem('authData')}>
                     <SlLogout />
                     <span>Log Out</span>
                 </div>
