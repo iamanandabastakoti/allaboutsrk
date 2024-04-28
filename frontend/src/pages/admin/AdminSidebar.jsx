@@ -5,23 +5,27 @@ import { ImFilm } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
     const sidebarLists = [
         {
             logo: <RxDashboard />,
-            name: 'Dashboard'
+            name: 'Dashboard',
+            number: 1
         },
         {
             logo: <ImFilm />,
-            name: 'Movies'
+            name: 'Movies',
+            number: 2
         },
         {
             logo: <FaUsers />,
-            name: 'Users'
+            name: 'Users',
+            number: 3
         },
         {
             logo: <TiMessages />,
-            name: 'Messages'
+            name: 'Messages',
+            number: 4
         },
     ]
     return (
@@ -36,7 +40,7 @@ const AdminSidebar = () => {
                         {
                             sidebarLists.map((props) => {
                                 return (
-                                    <li className='flex justify-start px-2 items-center gap-2 text-primaryBg cursor-pointer hover:bg-borderColor hover:text-brandColor hover:scale-105 duration-300 w-full rounded-lg min-h-10 text-xl'>
+                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${sidebarSelected === props.number ? 'bg-borderColor text-brandColor scale-105' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => setSidebarSelected(props.number)}>
                                         <span>{props.logo}</span>
                                         <span>{props.name}</span>
                                     </li>
