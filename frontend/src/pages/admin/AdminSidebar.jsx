@@ -4,6 +4,7 @@ import { RxDashboard } from "react-icons/rx";
 import { ImFilm } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
+import { Link } from 'react-router-dom';
 
 const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
     const sidebarLists = [
@@ -33,7 +34,7 @@ const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
             <div className='flex flex-col w-full justify-start'>
                 <div className='flex items-center justify-center min-h-24 w-full p-4 gap-2'>
                     <img className='w-10 h-10 rounded-full' src="/ddlj_srk.jpeg" alt="" />
-                    <h3 className='text-xl font-MontserratAlternate font-semibold flex justify-center items-center'>All About SRK</h3>
+                    <Link to={'/'} className='text-xl font-MontserratAlternate font-semibold flex justify-center items-center'>All About SRK</Link>
                 </div>
                 <div className='flex flex-col items-centermin-h-40 w-full pt-4'>
                     <ul className='pl-10 px-6 flex flex-col gap-5 w-full'>

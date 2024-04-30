@@ -30,7 +30,7 @@ const App = () => {
       <div className={`${appPath.pathname !== ('/admin') && 'pt-16 pb-6 px-3'} w-full min-h-screen`}>
         <Sidebar />
         {
-          appPath.pathname !== ('/' && '/admin') &&
+          appPath.pathname !== '/' && appPath.pathname !== '/admin' &&
           <div className='text-3xl text-primaryBg bg-brandColor p-1 w-fit rounded-lg mb-2' onClick={goBack}>
             <IoChevronBackOutline />
           </div>
