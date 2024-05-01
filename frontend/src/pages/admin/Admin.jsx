@@ -45,7 +45,7 @@ const Admin = () => {
         if (localAuthData?.username === `${import.meta.env.VITE_USERNAME}` && localAuthData?.password === `${import.meta.env.VITE_PASSWORD}`) {
             dispatch(logInAdmin(true));
         }
-    }, []);
+    }, [isAdminLogged]);
     return (
         <div className='flex flex-col min-h-screen'>
             {

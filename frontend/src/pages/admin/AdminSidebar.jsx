@@ -5,6 +5,8 @@ import { ImFilm } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOutAdmin } from '../../redux/slices/AdminSlice';
 
 const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
     const sidebarLists = [
@@ -29,6 +31,11 @@ const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
             number: 4
         },
     ]
+    const dispatch = useDispatch();
+    const adminLogOut = () => {
+        dispatch(logOutAdmin());
+        localStorage.removeItem('authData');
+    }
     return (
         <div className='w-2/12 min-h-full flex flex-col items-start justify-between bg-brandColor text-primaryBg'>
             <div className='flex flex-col w-full justify-start'>
@@ -52,7 +59,7 @@ const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
                 </div>
             </div>
             <div className='flex justify-center items-center text-xl min-h-20 w-full px-6 pl-10'>
-                <div className='w-full rounded-lg min-h-10 flex justify-start px-2 items-center gap-2 cursor-pointer hover:bg-borderColor hover:text-brandColor hover:scale-105 duration-300' onClick={() => localStorage.removeItem('authData')}>
+                <div className='w-full rounded-lg min-h-10 flex justify-start px-2 items-center gap-2 cursor-pointer hover:bg-borderColor hover:text-brandColor hover:scale-105 duration-300' onClick={adminLogOut}>
                     <SlLogout />
                     <span>Log Out</span>
                 </div>

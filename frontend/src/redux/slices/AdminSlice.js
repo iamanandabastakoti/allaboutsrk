@@ -9,7 +9,7 @@ const adminSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     logOutAdmin(state, action) {
-      state.isLoggedIn = !action.payload;
+      state.isLoggedIn = false;
     },
   },
 });
