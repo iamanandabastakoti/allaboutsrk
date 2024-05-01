@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import AdminHome from './AdminHome';
+import { useDispatch, useSelector } from 'react-redux';
+import { logInAdmin } from '../../redux/slices/AdminSlice';
 
 const Admin = () => {
     const [showPass, setShowPass] = useState(false);
@@ -17,14 +19,17 @@ const Admin = () => {
             [name]: value
         })
     }
-    const [adminLogged, setAdminLogged] = useState(false);
+    const isAdminLogged = useSelector((state) => {
+        return state.admin.isLoggedIn;
+    })
+    const dispatch = useDispatch();
     const logIN = () => {
         if ((data.username && data.password) !== '') {
             if (data.username === `${import.meta.env.VITE_USERNAME}` && data.password === `${import.meta.env.VITE_PASSWORD}`) {
                 localStorage.setItem('authData', JSON.stringify(data));
-                setAdminLogged(true);
                 setWrongAuth(false);
                 setEmptyField(false);
+                dispatch(logInAdmin(true));
             } else {
                 setWrongAuth(true);
                 setEmptyField(false);
@@ -38,13 +43,13 @@ const Admin = () => {
     useEffect(() => {
         const localAuthData = JSON.parse(localStorage.getItem('authData'));
         if (localAuthData?.username === `${import.meta.env.VITE_USERNAME}` && localAuthData?.password === `${import.meta.env.VITE_PASSWORD}`) {
-            setAdminLogged(true);
+            dispatch(logInAdmin(true));
         }
     }, []);
     return (
         <div className='flex flex-col min-h-screen'>
             {
-                !adminLogged ?
+                !isAdminLogged ?
                     <div className='p-4 bg-brandColor py-4 text-primaryBg flex flex-col justify-center min-h-screen gap-4'>
                         <h5 className='text-2xl font-semibold text-center font-MontserratAlternate underline'>Admin Log In</h5>
                         <form className='flex flex-col gap-3'>

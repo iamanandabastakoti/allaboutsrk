@@ -5,8 +5,12 @@ const adminSlice = createSlice({
     isLoggedIn: false,
   },
   reducers: {
-    logInAdmin(state, action) {},
-    logOutAdmin(state, action) {},
+    logInAdmin(state, action) {
+      state.isLoggedIn = action.payload;
+    },
+    logOutAdmin(state, action) {
+      state.isLoggedIn = !action.payload;
+    },
   },
 });
 
