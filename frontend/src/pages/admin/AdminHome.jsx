@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import AdminSidebar from './AdminSidebar'
+import { useSelector } from 'react-redux';
 
 const AdminHome = () => {
-    const [sidebarSelected, setSidebarSelected] = useState(1);
+    const adminSidebarListNum = useSelector((state) => {
+        return state.admin.adminSidebarListNum;
+    })
     return (
         <div className='flex min-h-screen'>
-            <AdminSidebar sidebarSelected={sidebarSelected} setSidebarSelected={setSidebarSelected} />
+            <AdminSidebar />
             <div className='w-10/12 min-h-full'>
                 <div className='p-2 px-6 flex justify-between items-center text-primaryBg bg-navbarBg min-h-12'>
                     {/* <h3 className='text-2xl font-MontserratAlternate font-semibold'>Admin</h3> */}
@@ -16,11 +19,11 @@ const AdminHome = () => {
                 </div>
                 <div className='p-2'>
                     {
-                        sidebarSelected === 1 ?
+                        adminSidebarListNum === 1 ?
                             <div>Dashboard</div>
-                            : sidebarSelected === 2 ?
+                            : adminSidebarListNum === 2 ?
                                 <div>Movies</div>
-                                : sidebarSelected === 3 ?
+                                : adminSidebarListNum === 3 ?
                                     <div>Users</div>
                                     : <div>Messages</div>
 

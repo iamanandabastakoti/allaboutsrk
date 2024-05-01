@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SlLogout } from "react-icons/sl";
 import { RxDashboard } from "react-icons/rx";
 import { ImFilm } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logOutAdmin } from '../../redux/slices/AdminSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutAdmin, toggleAdminSidebarListNum, } from '../../redux/slices/AdminSlice';
 
-const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
+const AdminSidebar = () => {
     const sidebarLists = [
         {
             logo: <RxDashboard />,
@@ -36,6 +36,12 @@ const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
         dispatch(logOutAdmin());
         localStorage.removeItem('authData');
     }
+    const adminSidebarListNumber = useSelector((state) => {
+        return state.admin.adminSidebarListNum;
+    })
+    const toggleAdminSidebarListNumber = (payload) => {
+        dispatch(toggleAdminSidebarListNum(payload));
+    }
     return (
         <div className='w-2/12 min-h-full flex flex-col items-start justify-between bg-brandColor text-primaryBg'>
             <div className='flex flex-col w-full justify-start'>
@@ -48,7 +54,7 @@ const AdminSidebar = ({ sidebarSelected, setSidebarSelected }) => {
                         {
                             sidebarLists.map((props) => {
                                 return (
-                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${sidebarSelected === props.number ? 'bg-borderColor text-brandColor scale-105' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => setSidebarSelected(props.number)}>
+                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${adminSidebarListNumber === props.number ? 'bg-borderColor text-brandColor scale-105' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => toggleAdminSidebarListNumber(props.number)}>
                                         <span>{props.logo}</span>
                                         <span>{props.name}</span>
                                     </li>

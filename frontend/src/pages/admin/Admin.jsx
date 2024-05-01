@@ -29,7 +29,7 @@ const Admin = () => {
                 localStorage.setItem('authData', JSON.stringify(data));
                 setWrongAuth(false);
                 setEmptyField(false);
-                dispatch(logInAdmin(true));
+                dispatch(logInAdmin());
             } else {
                 setWrongAuth(true);
                 setEmptyField(false);
@@ -43,7 +43,7 @@ const Admin = () => {
     useEffect(() => {
         const localAuthData = JSON.parse(localStorage.getItem('authData'));
         if (localAuthData?.username === `${import.meta.env.VITE_USERNAME}` && localAuthData?.password === `${import.meta.env.VITE_PASSWORD}`) {
-            dispatch(logInAdmin(true));
+            dispatch(logInAdmin());
         }
     }, [isAdminLogged]);
     return (

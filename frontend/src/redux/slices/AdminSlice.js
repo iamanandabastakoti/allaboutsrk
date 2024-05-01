@@ -3,16 +3,21 @@ const adminSlice = createSlice({
   name: "admin",
   initialState: {
     isLoggedIn: false,
+    adminSidebarListNum: 1,
   },
   reducers: {
     logInAdmin(state, action) {
-      state.isLoggedIn = action.payload;
+      state.isLoggedIn = true;
     },
     logOutAdmin(state, action) {
       state.isLoggedIn = false;
+    },
+    toggleAdminSidebarListNum(state, action) {
+      state.adminSidebarListNum = action.payload;
     },
   },
 });
 
 export { adminSlice };
-export const { logInAdmin, logOutAdmin } = adminSlice.actions;
+export const { logInAdmin, logOutAdmin, toggleAdminSidebarListNum } =
+  adminSlice.actions;
