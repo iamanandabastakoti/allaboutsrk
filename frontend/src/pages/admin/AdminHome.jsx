@@ -1,11 +1,33 @@
 import React, { useState } from 'react'
 import AdminSidebar from './AdminSidebar'
 import { useSelector } from 'react-redux';
+import AdminDashboard from './adminHomePanels/AdminDashboard';
+import AdminMovies from './adminHomePanels/AdminMovies';
+import AdminMessages from './adminHomePanels/AdminMessages';
+import AdminUsers from './adminHomePanels/AdminUsers';
 
 const AdminHome = () => {
     const adminSidebarListNum = useSelector((state) => {
         return state.admin.adminSidebarListNum;
     })
+    const adminPanelItems = [
+        {
+            number: 1,
+            name: <AdminDashboard />,
+        },
+        {
+            number: 2,
+            name: <AdminMovies />,
+        },
+        {
+            number: 3,
+            name: <AdminUsers />,
+        },
+        {
+            number: 4,
+            name: <AdminMessages />,
+        },
+    ]
     return (
         <div className='flex min-h-screen'>
             <AdminSidebar />
@@ -19,13 +41,12 @@ const AdminHome = () => {
                 </div>
                 <div className='p-2'>
                     {
-                        adminSidebarListNum === 1 ?
-                            <div>Dashboard</div>
-                            : adminSidebarListNum === 2 ?
-                                <div>Movies</div>
-                                : adminSidebarListNum === 3 ?
-                                    <div>Users</div>
-                                    : <div>Messages</div>
+                        adminPanelItems.map((props) => {
+                            return (
+                                adminSidebarListNum === props.number &&
+                                props.name
+                            )
+                        })
 
                     }
                 </div>
