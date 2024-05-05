@@ -1,10 +1,15 @@
+//configuring dotenv
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const movie_routes = require("./routes/movieRoutes");
 
 app.get("/", (req, res) => {
-  res.send("API is running successfully");
+  res.send(
+    `API is running successfully and app name = ${process.env.APP_NAME}`
+  );
 });
 
 //setting up the endpoints for the app
