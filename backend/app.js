@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const movie_routes = require("./routes/movieRoutes");
+const connectDb = require("./db/connect");
 
 app.get("/", (req, res) => {
   res.send(
@@ -15,8 +16,9 @@ app.get("/", (req, res) => {
 //setting up the endpoints for the app
 app.get("/allmovies", movie_routes);
 
-const start = () => {
+const start = async () => {
   try {
+    await connectDb();
     app.listen(PORT, () => {
       console.log(`App is running in port:${PORT}`);
     });
