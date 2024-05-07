@@ -1,9 +1,8 @@
 const Admin = require("../models/adminModel");
 
-const getAdmin = (req, res) => {
-  res.status(200).json({
-    message: "This endpoint gives all the admin data",
-  });
+const getAdmin = async (req, res) => {
+  const adminData = await Admin.find({});
+  res.status(200).json(adminData);
 };
 
 const registerAdmin = async (req, res) => {
