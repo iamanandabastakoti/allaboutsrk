@@ -7,11 +7,12 @@ const getAdmin = async (req, res) => {
 
 const registerAdmin = async (req, res) => {
   try {
-    const { name, username, password } = req.body;
+    const { name, username, password, profilePic } = req.body;
     const newAdmin = await Admin.create({
       name,
       username,
       password,
+      profilePic,
     });
     res.status(200).json(newAdmin);
     console.log("Admin registered successfully");
@@ -22,4 +23,23 @@ const registerAdmin = async (req, res) => {
   }
 };
 
-module.exports = { getAdmin, registerAdmin };
+const updateAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const oldAdmin = await Admin.findByIdAndUpdate({ _id: id });
+    const { name, username, password, profilePic } = req.body;
+    await oldAdmin.updateOne({
+      name,
+      username,
+      password,
+      profilePic,
+    });
+    res.status(200).json({ message: "Admin updated successfully" });
+    console.log("Admin updated successfully");
+  } catch (error) {
+    res.status(400).json({ message: "Unable to update admin" });
+    console.log(error);
+  }
+};
+
+module.exports = { getAdmin, registerAdmin, updateAdmin };
