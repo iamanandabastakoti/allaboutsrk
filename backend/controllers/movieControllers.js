@@ -54,4 +54,40 @@ const getSingleMovie = async (req, res) => {
   }
 };
 
-module.exports = { getAllMovies, addMovie, getSingleMovie };
+const updateMovie = async (req, res) => {
+  try {
+    const { movieID } = req.params;
+    const {
+      poster,
+      title,
+      overview,
+      director,
+      cast,
+      release_date,
+      runtime,
+      genre,
+      producer,
+      production_company,
+    } = req.body;
+    const oldMovie = await Movie.findByIdAndUpdate({ _id: movieID });
+    await oldMovie.updateOne({
+      poster,
+      title,
+      overview,
+      director,
+      cast,
+      release_date,
+      runtime,
+      genre,
+      producer,
+      production_company,
+    });
+    console.log("Movie updated successfully");
+    res.status(200).json({ message: "Movie updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Unable to update the movie" });
+  }
+};
+
+module.exports = { getAllMovies, addMovie, getSingleMovie, updateMovie };
