@@ -1,0 +1,80 @@
+const mongoose = require("mongoose");
+
+const MovieSchema = new mongoose.Schema({
+  main_poster: {
+    type: String,
+    required: true,
+  },
+  cover_poster: {
+    type: String,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  overview: {
+    type: String,
+    required: true,
+  },
+  director: {
+    type: String,
+    required: true,
+  },
+  cast: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        default: "",
+      },
+      role: {
+        type: String,
+      },
+    },
+  ],
+  release_date: [
+    {
+      date: {
+        type: Number,
+        required: true,
+      },
+      month: {
+        type: String,
+        required: true,
+      },
+      year: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  runtime: {
+    type: Number,
+  },
+  genre: [
+    {
+      name: {
+        type: String,
+      },
+    },
+  ],
+  producer: [
+    {
+      name: {
+        type: String,
+      },
+    },
+  ],
+  production_company: [
+    {
+      name: {
+        type: String,
+      },
+    },
+  ],
+});
+
+module.exports = mongoose.model("Movie", MovieSchema);
