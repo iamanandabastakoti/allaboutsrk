@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 //setting up the endpoints for the app
-app.use("/movies", movie_routes);
+app.use("/movie", movie_routes);
 app.use("/admin", admin_routes);
 app.use("/users", user_routes);
 
