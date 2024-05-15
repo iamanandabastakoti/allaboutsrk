@@ -47,20 +47,48 @@ const AddMovie = ({ setAddMovieDialog }) => {
     const addMoreCast = () => {
         setCastData([...castData, { castName: '', castPhoto: '', characterName: '' }])
     }
+    const deleteCast = (index) => {
+        if (castData.length > 1) {
+            const newData = [...castData];
+            newData.splice(index, 1);
+            setCastData(newData);
+        }
+    }
 
     const [genreData, setGenreData] = useState([{ name: '' }])
     const addMoreGenre = () => {
         setGenreData([...genreData, { name: '' }]);
+    }
+    const deleteGenre = (index) => {
+        if (genreData.length > 1) {
+            const newData = [...genreData];
+            newData.splice(index, 1);
+            setGenreData(newData);
+        }
     }
 
     const [producerData, setProducerData] = useState([{ name: '' }])
     const addMoreProducer = () => {
         setProducerData([...producerData, { name: '' }]);
     }
+    const deleteProducer = (index) => {
+        if (producerData.length > 1) {
+            const newData = [...producerData];
+            newData.splice(index, 1);
+            setProducerData(newData);
+        }
+    }
 
     const [productionData, setProductionData] = useState([{ name: '' }])
     const addMoreProduction = () => {
         setProductionData([...productionData, { name: '' }]);
+    }
+    const deleteProduction = (index) => {
+        if (productionData.length > 1) {
+            const newData = [...productionData];
+            newData.splice(index, 1);
+            setProductionData(newData);
+        }
     }
 
     return (
@@ -96,14 +124,14 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Cast:</label>
                             {
-                                castData.map((cast) => {
+                                castData.map((cast, index) => {
                                     return (
-                                        <div className='flex items-center gap-2'>
+                                        <div key={index} className='flex items-center gap-2'>
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast name' value={cast.name} />
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast photo' value={cast.image} />
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Character name' value={cast.role} />
                                             <span>
-                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' />
+                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteCast(index)} />
                                             </span>
                                         </div>
                                     )
@@ -137,12 +165,12 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Genre:</label>
                             {
-                                genreData.map((genre) => {
+                                genreData.map((genre, index) => {
                                     return (
-                                        <div className='flex items-center gap-2'>
+                                        <div key={index} className='flex items-center gap-2'>
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the genre' value={genre.name} />
                                             <span>
-                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' />
+                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteGenre(index)} />
                                             </span>
                                         </div>
                                     )
@@ -155,12 +183,12 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Producer:</label>
                             {
-                                producerData.map((producer) => {
+                                producerData.map((producer, index) => {
                                     return (
-                                        <div className='flex items-center gap-2'>
+                                        <div key={index} className='flex items-center gap-2'>
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the producer name' value={producer.name} />
                                             <span>
-                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' />
+                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteProducer(index)} />
                                             </span>
                                         </div>
                                     )
@@ -173,12 +201,12 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Production Company:</label>
                             {
-                                productionData.map((production) => {
+                                productionData.map((production, index) => {
                                     return (
-                                        <div className='flex items-center gap-2'>
+                                        <div key={index} className='flex items-center gap-2'>
                                             <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the production company name' value={production.name} />
                                             <span>
-                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' />
+                                                <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteProduction(index)} />
                                             </span>
                                         </div>
                                     )
