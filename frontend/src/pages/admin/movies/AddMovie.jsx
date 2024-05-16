@@ -43,9 +43,10 @@ const AddMovie = ({ setAddMovieDialog }) => {
         }
     ];
 
+    //cast data handling
     const [castData, setCastData] = useState([{ name: '', image: '', role: '' }]);
     const addMoreCast = () => {
-        setCastData([...castData, { castName: '', castPhoto: '', characterName: '' }])
+        setCastData([...castData, { name: '', image: '', role: '' }])
     }
     const deleteCast = (index) => {
         if (castData.length > 1) {
@@ -54,7 +55,14 @@ const AddMovie = ({ setAddMovieDialog }) => {
             setCastData(newData);
         }
     }
+    const handleCastInput = (index, field, value) => {
+        const oldData = [...castData]
+        oldData[index] = { ...oldData[index], [field]: value }
+        setCastData(oldData)
+    }
+    // console.log(castData)
 
+    //genre data handling
     const [genreData, setGenreData] = useState([{ name: '' }])
     const addMoreGenre = () => {
         setGenreData([...genreData, { name: '' }]);
@@ -66,7 +74,14 @@ const AddMovie = ({ setAddMovieDialog }) => {
             setGenreData(newData);
         }
     }
+    const handleGenreInput = (index, field, value) => {
+        const oldData = [...genreData]
+        oldData[index] = { ...oldData[index], [field]: value }
+        setGenreData(oldData)
+    }
+    // console.log(genreData)
 
+    //producer data handling
     const [producerData, setProducerData] = useState([{ name: '' }])
     const addMoreProducer = () => {
         setProducerData([...producerData, { name: '' }]);
@@ -78,7 +93,14 @@ const AddMovie = ({ setAddMovieDialog }) => {
             setProducerData(newData);
         }
     }
+    const handleProducerInput = (index, field, value) => {
+        const oldData = [...producerData]
+        oldData[index] = { ...oldData[index], [field]: value }
+        setProducerData(oldData)
+    }
+    // console.log(producerData)
 
+    //production data handling
     const [productionData, setProductionData] = useState([{ name: '' }])
     const addMoreProduction = () => {
         setProductionData([...productionData, { name: '' }]);
@@ -90,6 +112,13 @@ const AddMovie = ({ setAddMovieDialog }) => {
             setProductionData(newData);
         }
     }
+    const handleProductionInput = (index, field, value) => {
+        const oldData = [...productionData]
+        oldData[index] = { ...oldData[index], [field]: value }
+        setProductionData(oldData)
+    }
+    // console.log(productionData)
+
     const [title, setTitle] = useState('')
     const [poster, setPoster] = useState('')
     const [overview, setOverview] = useState('')
@@ -107,7 +136,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
             [name]: value
         }));
     };
-    console.log(releaseDate)
+    // console.log(releaseDate)
 
     return (
         <>
@@ -145,9 +174,9 @@ const AddMovie = ({ setAddMovieDialog }) => {
                                 castData.map((cast, index) => {
                                     return (
                                         <div key={index} className='flex items-center gap-2'>
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast name' value={cast.name} />
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast photo' value={cast.image} />
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Character name' value={cast.role} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast name' value={cast.name} onChange={e => handleCastInput(index, 'name', e.target.value)} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Cast photo' value={cast.image} onChange={e => handleCastInput(index, 'image', e.target.value)} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Character name' value={cast.role} onChange={e => handleCastInput(index, 'role', e.target.value)} />
                                             <span>
                                                 <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteCast(index)} />
                                             </span>
@@ -186,7 +215,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
                                 genreData.map((genre, index) => {
                                     return (
                                         <div key={index} className='flex items-center gap-2'>
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the genre' value={genre.name} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the genre' value={genre.name} onChange={e => handleGenreInput(index, 'name', e.target.value)} />
                                             <span>
                                                 <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteGenre(index)} />
                                             </span>
@@ -204,7 +233,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
                                 producerData.map((producer, index) => {
                                     return (
                                         <div key={index} className='flex items-center gap-2'>
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the producer name' value={producer.name} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the producer name' value={producer.name} onChange={e => handleProducerInput(index, 'name', e.target.value)} />
                                             <span>
                                                 <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteProducer(index)} />
                                             </span>
@@ -222,7 +251,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
                                 productionData.map((production, index) => {
                                     return (
                                         <div key={index} className='flex items-center gap-2'>
-                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the production company name' value={production.name} />
+                                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the production company name' value={production.name} onChange={e => handleProductionInput(index, 'name', e.target.value)} />
                                             <span>
                                                 <MdOutlineDelete className='bg-buttonColor text-primaryBg p-1 text-3xl rounded-lg cursor-pointer hover:brightness-90' onClick={() => deleteProduction(index)} />
                                             </span>
