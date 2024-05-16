@@ -90,6 +90,24 @@ const AddMovie = ({ setAddMovieDialog }) => {
             setProductionData(newData);
         }
     }
+    const [title, setTitle] = useState('')
+    const [poster, setPoster] = useState('')
+    const [overview, setOverview] = useState('')
+    const [director, setDirector] = useState('')
+    const [runtime, setRuntime] = useState('')
+    const [releaseDate, setReleaseDate] = useState({
+        day: '',
+        month: '',
+        year: ''
+    });
+    const handleReleaseInputChange = (e) => {
+        const { name, value } = e.target;
+        setReleaseDate(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    console.log(releaseDate)
 
     return (
         <>
@@ -107,19 +125,19 @@ const AddMovie = ({ setAddMovieDialog }) => {
                     <form className='flex flex-col gap-6 px-6'>
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Title:</label>
-                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the movie title' />
+                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the movie title' value={title} onChange={e => setTitle(e.target.value)} />
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Poster:</label>
-                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the poster link' />
+                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the poster link' value={poster} onChange={e => setPoster(e.target.value)} />
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Overview:</label>
-                            <textarea className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full resize-none' rows={4} placeholder='Enter the movie overview' />
+                            <textarea className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full resize-none' rows={4} placeholder='Enter the movie overview' value={overview} onChange={e => setOverview(e.target.value)} />
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Director:</label>
-                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the movie director name' />
+                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the movie director name' value={director} onChange={e => setDirector(e.target.value)} />
                         </div>
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Cast:</label>
@@ -144,23 +162,23 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Release Date:</label>
                             <div className='flex items-center gap-2'>
-                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release day' />
-                                <select className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full'>
-                                    <option>Release month</option>
+                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release day' name='day' value={releaseDate.day} onChange={handleReleaseInputChange} />
+                                <select className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' name='month' value={releaseDate.month} onChange={handleReleaseInputChange}>
+                                    <option value="">Release month</option>
                                     {
-                                        releaseMonths.map((month) => {
+                                        releaseMonths.map((month, index) => {
                                             return (
-                                                <option>{month.name}</option>
+                                                <option key={index}>{month.name}</option>
                                             )
                                         })
                                     }
                                 </select>
-                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release year' />
+                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release year' name='year' value={releaseDate.year} onChange={handleReleaseInputChange} />
                             </div>
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Runtime(in minutes):</label>
-                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the runtime in minutes' />
+                            <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Enter the runtime in minutes' value={runtime} onChange={e => setRuntime(e.target.value)} />
                         </div>
                         <div className='flex flex-col gap-1'>
                             <label className='text-lg' htmlFor="">Genre:</label>
