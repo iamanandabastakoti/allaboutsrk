@@ -3,6 +3,7 @@ import { RxCross1 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineDelete } from "react-icons/md";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddMovie = ({ setAddMovieDialog }) => {
     const releaseMonths = [
@@ -155,8 +156,11 @@ const AddMovie = ({ setAddMovieDialog }) => {
             }
             await axios.post("http://localhost:5000/movie/addmovie", movieData)
             console.log("Movie Added Successfully")
+            setAddMovieDialog(false)
+            toast.success("Movie Added Successfully")
         } catch (error) {
             console.log("Error adding movie", error)
+            toast.error("Unable to add the movie!")
         }
     }
 

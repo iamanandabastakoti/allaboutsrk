@@ -52,7 +52,7 @@ const App = () => {
         <Footer />
       }
       <ToastContainer
-        position="bottom-center"
+        position="bottom-right"
         autoClose={2000}
         limit={2}
         hideProgressBar={false}
