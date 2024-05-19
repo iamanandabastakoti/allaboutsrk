@@ -5,6 +5,11 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const connectDb = require("./db/connect");
+
+//setting up CORS
+const cors = require("cors");
+app.use(cors());
+
 //helps to destructure the input json data
 app.use(express.json());
 
