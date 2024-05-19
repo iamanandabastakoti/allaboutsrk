@@ -17,6 +17,7 @@ app.use(express.json());
 const movie_routes = require("./routes/movieRoutes");
 const admin_routes = require("./routes/adminRoutes");
 const user_routes = require("./routes/userRoutes");
+const message_routes = require("./routes/messageRoutes");
 
 app.get("/", (req, res) => {
   res.send(
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 app.use("/movie", movie_routes);
 app.use("/admin", admin_routes);
 app.use("/users", user_routes);
+app.use("/message", message_routes);
 
 const start = async () => {
   try {
