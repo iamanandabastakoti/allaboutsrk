@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { RxCross1 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineDelete } from "react-icons/md";
+import axios from 'axios';
 
 const AddMovie = ({ setAddMovieDialog }) => {
     const releaseMonths = [
@@ -123,11 +124,11 @@ const AddMovie = ({ setAddMovieDialog }) => {
     const [poster, setPoster] = useState('')
     const [overview, setOverview] = useState('')
     const [director, setDirector] = useState('')
-    const [runtime, setRuntime] = useState('')
+    const [runtime, setRuntime] = useState(null)
     const [releaseDate, setReleaseDate] = useState({
-        day: '',
+        date: null,
         month: '',
-        year: ''
+        year: null
     });
     const handleReleaseInputChange = (e) => {
         const { name, value } = e.target;
@@ -137,6 +138,27 @@ const AddMovie = ({ setAddMovieDialog }) => {
         }));
     };
     // console.log(releaseDate)
+
+    const submitMovie = async () => {
+        try {
+            const movieData = {
+                poster,
+                title,
+                overview,
+                director,
+                cast: castData,
+                release_date: releaseDate,
+                runtime,
+                genre: genreData,
+                producer: producerData,
+                production_company: productionData
+            }
+            await axios.post("http://localhost:5000/movie/addmovie", movieData)
+            console.log("Movie Added Successfully")
+        } catch (error) {
+            console.log("Error adding movie", error)
+        }
+    }
 
     return (
         <>
@@ -191,7 +213,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
                         <div className='flex flex-col'>
                             <label className='text-lg' htmlFor="">Release Date:</label>
                             <div className='flex items-center gap-2'>
-                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release day' name='day' value={releaseDate.day} onChange={handleReleaseInputChange} />
+                                <input className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' type="text" placeholder='Release day' name='date' value={releaseDate.date} onChange={handleReleaseInputChange} />
                                 <select className='px-3 py-2 bg-gray-100 rounded-lg focus:outline-none w-full' name='month' value={releaseDate.month} onChange={handleReleaseInputChange}>
                                     <option value="">Release month</option>
                                     {
@@ -264,7 +286,7 @@ const AddMovie = ({ setAddMovieDialog }) => {
                             </span>
                         </div>
                         <div className='flex justify-center gap-6 items-center'>
-                            <span className='w-full flex justify-center items-center py-2 px-3 rounded-lg border-2 border-green-600 bg-green-600 text-primaryBg cursor-pointer hover:brightness-75 duration-300'>Confirm</span>
+                            <span className='w-full flex justify-center items-center py-2 px-3 rounded-lg border-2 border-green-600 bg-green-600 text-primaryBg cursor-pointer hover:brightness-75 duration-300' onClick={submitMovie}>Confirm</span>
                         </div>
                     </form>
                 </div>
