@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 
 const AdminMessages = () => {
 
-  const [allMessages, setAllMessages] = useState([])
-
+  const [allMessages, setAllMessages] = useState([]);
   const fetchMessages = async () => {
     const response = await axios.get('http://localhost:5000/message');
     setAllMessages(response.data);
   }
+
   useEffect(() => {
     fetchMessages();
   }, [])
@@ -23,12 +23,12 @@ const AdminMessages = () => {
           <th className='w-[15%] p-3 text-center'>Action</th>
         </tr>
         {
-          allMessages.map((props) => {
+          allMessages.map((message) => {
             return (
               <tr className='text-center h-12 border-b-2 border-borderColor'>
-                <td className='p-3 text-start'>{props.name}</td>
-                <td className='p-3 text-start'>{props.email}</td>
-                <td className='p-3 text-start'>{props.message}</td>
+                <td className='p-3 text-start'>{message.name}</td>
+                <td className='p-3 text-start'>{message.email}</td>
+                <td className='p-3 text-start'>{message.message}</td>
                 <td className='p-3 text-center'>
                   <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
                 </td>
