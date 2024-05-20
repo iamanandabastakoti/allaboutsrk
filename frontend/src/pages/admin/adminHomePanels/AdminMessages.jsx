@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 
 const AdminMessages = () => {
 
@@ -7,6 +8,12 @@ const AdminMessages = () => {
   const fetchMessages = async () => {
     const response = await axios.get('http://localhost:5000/message');
     setAllMessages(response.data);
+  }
+  const deleteSingleMessage = async (messageID) => {
+    await axios.delete(`http://localhost:5000/message/delete/${messageID}`);
+    toast.success("Message deleted successfully");
+    fetchMessages();
+    // console.log(messageID)
   }
 
   useEffect(() => {
@@ -26,14 +33,15 @@ const AdminMessages = () => {
           <th className='w-[15%] p-3 text-center'>Action</th>
         </tr>
         {
-          allMessages.map((message) => {
+          allMessages.map((message, index) => {
             return (
-              <tr className='text-center h-12 border-b-2 border-borderColor'>
+              <tr key={index} className='text-center h-12 border-b-2 border-borderColor'>
                 <td className='p-3 text-start'>{message.name}</td>
                 <td className='p-3 text-start'>{message.email}</td>
                 <td className='p-3 text-start'>{message.message}</td>
-                <td className='p-3 text-center'>
+                <td className='p-3 text-center flex gap-1 items-center'>
                   <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
+                  <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => deleteSingleMessage(message._id)}>Delete</span>
                 </td>
               </tr>
             )
