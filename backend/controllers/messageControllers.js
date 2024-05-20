@@ -21,4 +21,17 @@ const postMessage = async (req, res) => {
   }
 };
 
-module.exports = { getAllMessage, postMessage };
+const deleteSingleMessage = async (req, res) => {
+  try {
+    const { messageID } = req.params;
+    const oldMessage = await Message.findByIdAndDelete({ _id: messageID });
+    await oldMessage.deleteOne({});
+    console.log("Message deleted successfully");
+    res.status(200).json({ message: "Message deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Unable to delete the message" });
+  }
+};
+
+module.exports = { getAllMessage, postMessage, deleteSingleMessage };
