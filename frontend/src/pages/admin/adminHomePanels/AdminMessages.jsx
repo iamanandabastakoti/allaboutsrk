@@ -14,7 +14,10 @@ const AdminMessages = () => {
   }, [])
   return (
     <div className='flex flex-col items-start text-brandColor gap-6'>
-      <h3 className='text-2xl font-semibold'>All Messages</h3>
+      <div className='flex justify-between w-full'>
+        <h3 className='text-2xl font-semibold'>All Messages</h3>
+        <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={fetchMessages}>Refresh</span>
+      </div>
       <table className='border-x-2 border-borderColor w-full'>
         <tr className='bg-brandColor border-x-2 border-brandColor text-primaryBg h-10'>
           <th className='w-[20%] p-3 text-start'>Name</th>
@@ -30,7 +33,7 @@ const AdminMessages = () => {
                 <td className='p-3 text-start'>{message.email}</td>
                 <td className='p-3 text-start'>{message.message}</td>
                 <td className='p-3 text-center'>
-                  <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
+                  <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
                 </td>
               </tr>
             )
