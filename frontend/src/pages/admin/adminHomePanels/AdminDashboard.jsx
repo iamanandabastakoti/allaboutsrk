@@ -1,26 +1,12 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { FaUsers } from "react-icons/fa";
 import { ImFilm } from "react-icons/im";
 import { TiMessages } from "react-icons/ti";
+import { useDispatch } from 'react-redux';
+import { toggleAdminSidebarListNum } from '../../../redux/slices/AdminSlice';
 
 const AdminDashboard = () => {
-    const dashboardCards = [
-        {
-            icon: <FaUsers />,
-            stats: '10,000',
-            title: 'Total Users',
-        },
-        {
-            icon: <ImFilm />,
-            stats: '160',
-            title: 'Total Movies',
-        },
-        {
-            icon: <TiMessages />,
-            stats: '25,000',
-            title: 'Total Messages',
-        },
-    ]
     const dashboardMovies = [
         {
             name: 'Dunki',
@@ -49,6 +35,46 @@ const AdminDashboard = () => {
             joined: '1st May, 2024',
         },
     ]
+
+    const [totalMovies, setTotalMovies] = useState(null);
+    const [totalMessages, setTotalMessages] = useState(null);
+    const fetchData = async () => {
+        const moviedata = await axios.get('http://localhost:5000/movie/allmovies');
+        const messageData = await axios.get('http://localhost:5000/message');
+        setTotalMovies(moviedata.data.length);
+        setTotalMessages(messageData.data.length);
+
+    }
+
+    const dashboardCards = [
+        {
+            icon: <ImFilm />,
+            stats: totalMovies,
+            title: 'Total Movies',
+            number: 2,
+        },
+        {
+            icon: <FaUsers />,
+            stats: '10,000',
+            title: 'Total Users',
+            number: 3,
+        },
+        {
+            icon: <TiMessages />,
+            stats: totalMessages,
+            title: 'Total Messages',
+            number: 4,
+        },
+    ]
+
+    const dispatch = useDispatch();
+    const toggleAdminSidebarListNumber = (payload) => {
+        dispatch(toggleAdminSidebarListNum(payload));
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
     return (
         <div className='flex flex-col items-start text-brandColor gap-6'>
             <h3 className='text-2xl font-semibold'>Website Stats</h3>
@@ -57,7 +83,7 @@ const AdminDashboard = () => {
                 {
                     dashboardCards.map((props) => {
                         return (
-                            <div className='min-w-60 w-1/5 min-h-40 shadow-[5px_5px_50px_#a4a4a4,-5px_-5px_50px_#ffffff] rounded-xl p-6 flex flex-col gap-3'>
+                            <div className='min-w-60 w-1/5 min-h-40 cursor-pointer shadow-[5px_5px_50px_#a4a4a4,-5px_-5px_50px_#ffffff] hover:brightness-90 rounded-xl p-6 flex flex-col gap-3' onClick={() => toggleAdminSidebarListNumber(props.number)}>
                                 <span className='text-3xl text-center'>
                                     {props.icon}
                                 </span>
