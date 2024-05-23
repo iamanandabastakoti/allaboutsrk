@@ -55,4 +55,28 @@ const deleteAdmin = async (req, res) => {
   }
 };
 
-module.exports = { getAdmin, registerAdmin, updateAdmin, deleteAdmin };
+const adminLogin = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      res.json({ message: "Username not found" });
+    } else {
+      if (password === admin.password) {
+        res.json("Authorized");
+      } else {
+        res.json("NotAuthorized");
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  getAdmin,
+  registerAdmin,
+  updateAdmin,
+  deleteAdmin,
+  adminLogin,
+};
