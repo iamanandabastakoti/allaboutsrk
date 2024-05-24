@@ -59,7 +59,7 @@ const AdminSidebar = () => {
                         {
                             sidebarLists.map((props) => {
                                 return (
-                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${adminSidebarListNumber === props.number ? 'bg-borderColor text-brandColor scale-105' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => toggleAdminSidebarListNumber(props.number)}>
+                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${adminSidebarListNumber === props.number ? 'bg-borderColor text-brandColor scale-110' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => toggleAdminSidebarListNumber(props.number)}>
                                         <span>{props.logo}</span>
                                         <span>{props.name}</span>
                                     </li>
