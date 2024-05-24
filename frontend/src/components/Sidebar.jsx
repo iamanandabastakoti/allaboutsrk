@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { toggleSidebar } from '../redux/slices/SidebarSlice'
 
 const Sidebar = () => {
     const sidebarItems = [
