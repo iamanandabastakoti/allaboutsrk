@@ -69,19 +69,21 @@ const updateMovie = async (req, res) => {
       producer,
       production_company,
     } = req.body;
-    const oldMovie = await Movie.findByIdAndUpdate({ _id: movieID });
-    await oldMovie.updateOne({
-      poster,
-      title,
-      overview,
-      director,
-      cast,
-      release_date,
-      runtime,
-      genre,
-      producer,
-      production_company,
-    });
+    await Movie.findByIdAndUpdate(
+      { _id: movieID },
+      {
+        poster,
+        title,
+        overview,
+        director,
+        cast,
+        release_date,
+        runtime,
+        genre,
+        producer,
+        production_company,
+      }
+    );
     console.log("Movie updated successfully");
     res.status(200).json({ message: "Movie updated successfully" });
   } catch (error) {
@@ -93,8 +95,7 @@ const updateMovie = async (req, res) => {
 const deleteMovie = async (req, res) => {
   try {
     const { movieID } = req.params;
-    const oldMovie = await Movie.findByIdAndDelete({ _id: movieID });
-    await oldMovie.deleteOne({});
+    await Movie.findByIdAndDelete({ _id: movieID });
     console.log("Movie deleted successfully");
     res.status(200).json({ message: "Movie deleted successfully" });
   } catch (error) {

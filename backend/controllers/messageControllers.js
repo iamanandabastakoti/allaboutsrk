@@ -24,8 +24,7 @@ const postMessage = async (req, res) => {
 const deleteSingleMessage = async (req, res) => {
   try {
     const { messageID } = req.params;
-    const oldMessage = await Message.findByIdAndDelete({ _id: messageID });
-    await oldMessage.deleteOne({});
+    await Message.findByIdAndDelete({ _id: messageID });
     console.log("Message deleted successfully");
     res.status(200).json({ message: "Message deleted successfully" });
   } catch (error) {
@@ -34,4 +33,22 @@ const deleteSingleMessage = async (req, res) => {
   }
 };
 
-module.exports = { getAllMessage, postMessage, deleteSingleMessage };
+const getSingleMessage = async (req, res) => {
+  try {
+    const { messageID } = req.params;
+    const messageData = await Message.findById({ _id: messageID });
+    res.status(200).json(messageData);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(400)
+      .json({ message: "Unable to get the message of given messageID" });
+  }
+};
+
+module.exports = {
+  getAllMessage,
+  postMessage,
+  deleteSingleMessage,
+  getSingleMessage,
+};

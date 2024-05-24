@@ -26,14 +26,16 @@ const registerAdmin = async (req, res) => {
 const updateAdmin = async (req, res) => {
   try {
     const { id } = req.params;
-    const oldAdmin = await Admin.findByIdAndUpdate({ _id: id });
     const { name, username, password, profilePic } = req.body;
-    await oldAdmin.updateOne({
-      name,
-      username,
-      password,
-      profilePic,
-    });
+    await Admin.findByIdAndUpdate(
+      { _id: id },
+      {
+        name,
+        username,
+        password,
+        profilePic,
+      }
+    );
     res.status(200).json({ message: "Admin updated successfully" });
     console.log("Admin updated successfully");
   } catch (error) {
@@ -45,8 +47,7 @@ const updateAdmin = async (req, res) => {
 const deleteAdmin = async (req, res) => {
   try {
     const { id } = req.params;
-    const oldAdmin = await Admin.findByIdAndDelete({ _id: id });
-    await oldAdmin.deleteOne({});
+    await Admin.findByIdAndDelete({ _id: id });
     res.status(200).json({ message: "Admin deleted successfully" });
     console.log("Admin deleted successfully");
   } catch (error) {
