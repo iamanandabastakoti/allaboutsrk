@@ -27,7 +27,7 @@ const App = () => {
         appPath.pathname !== ('/admin') &&
         <Navbar />
       }
-      <div className={`${appPath.pathname !== ('/admin') && 'pt-16 pb-6 px-3'} w-full min-h-screen`}>
+      <div className={`${appPath.pathname !== ('/admin') && 'py-4 px-3'} w-full min-h-screen`}>
         <Sidebar />
         {
           appPath.pathname !== '/' && appPath.pathname !== '/admin' &&

@@ -14,7 +14,7 @@ export default {
         primaryBg: "#ffffff",
         primaryText: "#000000",
         brandColor: "#002855",
-        navbarBg: "#14213d",
+        navbarBg: "#4f46e5",
         buttonColor: "#fca311",
         borderColor: "#e5e5e5",
       },

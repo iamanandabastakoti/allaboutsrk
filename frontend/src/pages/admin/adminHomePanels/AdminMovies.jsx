@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import AddMovie from '../movies/AddMovie';
+import axios from 'axios';
 
 const AdminMovies = () => {
     const dashboardMovies = [
@@ -33,6 +34,16 @@ const AdminMovies = () => {
     const addMovieReq = () => {
         setAddMovieDialog(true);
     }
+    const [allMovies, setAllMovies] = useState([]);
+    const fetchAllMovies = async () => {
+        const response = await axios.get(`http://localhost:5000/movie/allmovies`);
+        setAllMovies(response.data);
+        console.log(allMovies);
+    }
+
+    useEffect(() => {
+        fetchAllMovies();
+    }, []);
     return (
         <div>
             <div className='flex flex-col gap-2 w-full'>
@@ -48,15 +59,15 @@ const AdminMovies = () => {
                 <table className='border-x-2 border-borderColor'>
                     <tr className='bg-brandColor border-x-2 border-brandColor text-primaryBg h-10'>
                         <th className='w-1/3 p-3'>Name</th>
-                        <th className='w-1/3 p-3'>Release Date</th>
+                        <th className='w-1/3 p-3'>Director</th>
                         <th className='w-1/3 p-3'>Action</th>
                     </tr>
                     {
-                        dashboardMovies.map((movie) => {
+                        allMovies.map((movie) => {
                             return (
                                 <tr className='text-center h-12 border-b-2 border-borderColor'>
-                                    <td className='p-3 font-semibold text-lg'>{movie.name}</td>
-                                    <td className='p-3'>{movie.releaseDate}</td>
+                                    <td className='p-3 font-semibold text-lg'>{movie.title}</td>
+                                    <td className='p-3'>{movie.director}</td>
                                     <td className='p-3 flex justify-center gap-2'>
                                         <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
                                         <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>Update</span>

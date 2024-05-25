@@ -48,7 +48,7 @@ const AdminSidebar = () => {
         dispatch(toggleAdminSidebarListNum(payload));
     }
     return (
-        <div className='fixed w-2/12 min-h-full flex flex-col items-start justify-between bg-brandColor text-primaryBg'>
+        <div className='sticky left-0 top-0 max-h-screen w-80 min-h-full flex flex-col items-start justify-between bg-brandColor text-primaryBg'>
             <div className='flex flex-col w-full justify-start'>
                 <div className='flex items-center justify-center min-h-24 w-full p-4 gap-2'>
                     <img className='w-10 h-10 rounded-full' src="/ddlj_srk.jpeg" alt="" />
