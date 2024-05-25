@@ -36,36 +36,38 @@ const AdminLogin = () => {
         }
     }
     return (
-        <div className='p-4 bg-brandColor py-4 text-primaryBg flex flex-col justify-center min-h-screen gap-4'>
-            <h5 className='text-2xl font-semibold text-center font-MontserratAlternate underline'>Admin Log In</h5>
-            <form className='flex flex-col gap-3'>
-                {
-                    emptyField &&
-                    <span className='text-red-600'>*Enter the username and password</span>
-                }
-                {
-                    wrongAuth &&
-                    <span className='text-red-600'>Wrong username or password</span>
-                }
-                <div>
-                    <label htmlFor='username' className='px-2'>Username</label>
-                    <input className='border-2 border-borderColor text-primaryText rounded-lg p-2 w-full focus:outline-none' type="text" placeholder='Enter your username' name='username' onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor='password' className='px-2'>Password</label>
-                    <div className='flex gap-1 items-center relative w-full'>
-                        <input className='border-2 border-borderColor text-primaryText rounded-lg p-2 w-[100%] focus:outline-none' type={`${showPass ? 'text' : 'password'}`} placeholder='Enter your password' name='password' onChange={handleChange} />
-                        <span className='text-primaryText text-xl w-[10%] p-2 absolute h-full flex justify-center items-center right-0' onClick={() => setShowPass(!showPass)}>
-                            {
-                                showPass ? <FaRegEye /> : <FaRegEyeSlash />
-                            }
-                        </span>
+        <div className='p-4 bg-brandColor py-4 text-primaryBg flex justify-center items-center min-h-screen'>
+            <div className='w-[30%] flex flex-col gap-4'>
+                <h5 className='text-2xl font-semibold text-center font-MontserratAlternate underline'>Admin Log In</h5>
+                <form className='flex flex-col gap-4'>
+                    {
+                        emptyField &&
+                        <span className='text-red-600'>*Enter the username and password</span>
+                    }
+                    {
+                        wrongAuth &&
+                        <span className='text-red-600'>Wrong username or password</span>
+                    }
+                    <div>
+                        <label htmlFor='username' className='px-2'>Username</label>
+                        <input className='border-2 border-borderColor text-primaryText rounded-lg p-2 w-full focus:outline-none' type="text" placeholder='Enter your username' name='username' onChange={handleChange} />
                     </div>
-                </div>
-            </form>
-            <button className='w-full bg-buttonColor p-2 rounded-lg flex justify-center items-center gap-1 text-lg' onClick={logIN}>
-                Log In
-            </button>
+                    <div>
+                        <label htmlFor='password' className='px-2'>Password</label>
+                        <div className='flex gap-1 items-center relative w-full overflow-hidden'>
+                            <input className='border-2 border-borderColor text-primaryText rounded-lg p-2 w-[100%] focus:outline-none' type={`${showPass ? 'text' : 'password'}`} placeholder='Enter your password' name='password' onChange={handleChange} />
+                            <span className='text-primaryText text-xl w-[10%] p-2 absolute h-full flex justify-center items-center right-0 cursor-pointer hover:bg-borderColor rounded-xl' onClick={() => setShowPass(!showPass)}>
+                                {
+                                    showPass ? <FaRegEye /> : <FaRegEyeSlash />
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <button className='w-full bg-buttonColor p-2 rounded-lg flex justify-center items-center gap-1 text-lg hover:brightness-75' onClick={logIN}>
+                    Log In
+                </button>
+            </div>
         </div>
     )
 }
