@@ -18,6 +18,14 @@ export default {
         buttonColor: "#fca311",
         borderColor: "#e5e5e5",
       },
+      screens: {
+        sm: "320px", // => @media (min-width: 320px) { ... }
+        md: "375px",
+        lg: "425px",
+        tablet: "768px",
+        laptop: "1024px",
+        desktop: "1280px",
+      },
     },
   },
   plugins: [],
