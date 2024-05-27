@@ -1,7 +1,7 @@
 const Message = require("../models/messageModel");
 
 const getAllMessage = async (req, res) => {
-  const allMessages = await Message.find({});
+  const allMessages = await Message.find().sort({ date: "asc" });
   res.status(200).json(allMessages);
 };
 
@@ -46,9 +46,20 @@ const getSingleMessage = async (req, res) => {
   }
 };
 
+const deleteAllMessages = async (req, res) => {
+  try {
+    await Message.deleteMany({});
+    res.status(200).json({ message: "All messages deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Unable to delete all messages" });
+  }
+};
+
 module.exports = {
   getAllMessage,
   postMessage,
   deleteSingleMessage,
   getSingleMessage,
+  deleteAllMessages,
 };
