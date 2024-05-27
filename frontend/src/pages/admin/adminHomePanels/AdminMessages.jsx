@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import MessageLoading from '/public/animations/message-loading.json';
 import Lottie from 'lottie-react';
-import { MdDelete } from "react-icons/md";
 import ViewMessage from './ViewMessage';
 
 const AdminMessages = () => {
-  const [hasMessageLoaded, setMessageLoaded] = useState(false)
+  const [hasMessageLoaded, setMessageLoaded] = useState(false);
   const [allMessages, setAllMessages] = useState([]);
   const fetchMessages = async () => {
     setMessageLoaded(false);

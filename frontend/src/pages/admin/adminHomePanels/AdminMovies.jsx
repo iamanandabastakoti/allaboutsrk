@@ -3,6 +3,8 @@ import { IoMdAdd } from "react-icons/io";
 import AddMovie from '../movies/AddMovie';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Loading from '/public/animations/loading.json';
+import Lottie from 'lottie-react';
 
 const AdminMovies = () => {
     const dashboardMovies = [
@@ -31,6 +33,8 @@ const AdminMovies = () => {
             releaseDate: '25th January, 2023',
         },
     ]
+
+    const [hasMovieLoaded, setMovieLoaded] = useState(false);
     const [addMovieDialog, setAddMovieDialog] = useState(false);
     const addMovieReq = () => {
         setAddMovieDialog(true);
@@ -56,8 +60,12 @@ const AdminMovies = () => {
 
     const [allMovies, setAllMovies] = useState([]);
     const fetchAllMovies = async () => {
+        setMovieLoaded(false);
         const response = await axios.get(`http://localhost:5000/movie/allmovies`);
         setAllMovies(response.data);
+        setTimeout(() => {
+            setMovieLoaded(true);
+        }, 1000);
     }
 
     useEffect(() => {
@@ -68,35 +76,45 @@ const AdminMovies = () => {
             <div className='flex flex-col gap-2 w-full'>
                 <div className='flex justify-between px-6'>
                     <h5 className='text-2xl font-semibold'>All Movies</h5>
-                    <span className='flex justify-center items-center py-1 px-4 w-fit rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={addMovieReq}>
-                        <span className='text-xl'>
-                            <IoMdAdd />
+                    <div className='flex items-center gap-2'>
+                        <span className='flex justify-center items-center py-1 px-4 w-fit rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={addMovieReq}>
+                            <span className='text-xl'>
+                                <IoMdAdd />
+                            </span>
+                            Add Movie
                         </span>
-                        Add Movie
-                    </span>
+                        <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={fetchAllMovies}>Refresh</span>
+                    </div>
                 </div>
-                <table className='border-x-2 border-borderColor'>
-                    <tr className='bg-brandColor border-x-2 border-brandColor text-primaryBg h-10'>
-                        <th className='w-1/3 p-3'>Name</th>
-                        <th className='w-1/3 p-3'>Director</th>
-                        <th className='w-1/3 p-3'>Action</th>
-                    </tr>
-                    {
-                        allMovies.map((movie, index) => {
-                            return (
-                                <tr key={index} className='text-center h-12 border-b-2 border-borderColor'>
-                                    <td className='p-3 font-semibold text-lg'>{movie.title}</td>
-                                    <td className='p-3'>{movie.director}</td>
-                                    <td className='p-3 flex justify-center gap-2'>
-                                        <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
-                                        <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>Update</span>
-                                        <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => deleteMovieReq(movie._id)}>Delete</span>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                </table>
+                {
+                    !hasMovieLoaded ?
+                        <div className='flex justify-center w-full h-full'>
+                            <Lottie animationData={Loading} />
+                        </div>
+                        :
+                        <table className='border-x-2 border-borderColor'>
+                            <tr className='bg-brandColor border-x-2 border-brandColor text-primaryBg h-10'>
+                                <th className='w-1/3 p-3'>Name</th>
+                                <th className='w-1/3 p-3'>Director</th>
+                                <th className='w-1/3 p-3'>Action</th>
+                            </tr>
+                            {
+                                allMovies.map((movie, index) => {
+                                    return (
+                                        <tr key={index} className='text-center h-12 border-b-2 border-borderColor'>
+                                            <td className='p-3 font-semibold text-lg'>{movie.title}</td>
+                                            <td className='p-3'>{movie.director}</td>
+                                            <td className='p-3 flex justify-center gap-2'>
+                                                <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
+                                                <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>Update</span>
+                                                <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => deleteMovieReq(movie._id)}>Delete</span>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                }
             </div>
             {
                 addMovieDialog &&
