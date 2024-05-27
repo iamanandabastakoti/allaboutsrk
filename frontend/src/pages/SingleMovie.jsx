@@ -54,20 +54,24 @@ const SingleMovie = () => {
     }, []);
     return (
         <div>
-            <div className='overflow-hidden relative flex items-center w-full min-h-60'>
-                <img className='left-2 relative z-50 w-28 h-40 object-cver rounded-xl' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
-                <img className='absolute z-40 object-contain' src="https://media.themoviedb.org/t/p/w533_and_h300_bestv2/90ez6ArvpO8bvpyIngBuwXOqJm5.jpg" alt="bg-image" />
+            <div className='laptop:flex laptop:gap-4 laptop:w-full laptop:mb-4'>
+                <div className='overflow-hidden relative flex items-center w-full min-h-60 laptop:h-fit laptop:w-1/4'>
+                    <img className='left-2 relative z-50 w-28 h-40 object-c0ver laptop:h-96 laptop:w-full' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
+                    {/* <img className='absolute z-40 object-contain' src="https://media.themoviedb.org/t/p/w533_and_h300_bestv2/90ez6ArvpO8bvpyIngBuwXOqJm5.jpg" alt="bg-image" /> */}
+                </div>
+                <div className='laptop:flex laptop:flex-col laptop:items-start laptop:gap-10 laptop:p-2 laptop:h-full laptop:w-3/4'>
+                    <h4 className='text-xl text-center font-semibold laptop:text-3xl'>Dilwale Dulhania Le Jayenge (1995)</h4>
+                    <div className='flex flex-col'>
+                        <span className='font-semibold text-lg laptop:text-2xl'>Overview</span>
+                        <span className='text-justify laptop:text-lg'>Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.</span>
+                    </div>
+                    <div className='flex flex-col laptop:text-lg'>
+                        <span>Aditya Chopra</span>
+                        <span>Director, Screenplay, Story</span>
+                    </div>
+                </div>
             </div>
             <div className='flex flex-col gap-4'>
-                <h4 className='text-xl text-center font-semibold'>Dilwale Dulhania Le Jayenge (1995)</h4>
-                <div className='flex flex-col'>
-                    <span className='font-semibold text-lg'>Overview</span>
-                    <span className='text-justify'>Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.</span>
-                </div>
-                <div className='flex flex-col'>
-                    <span>Aditya Chopra</span>
-                    <span>Director, Screenplay, Story</span>
-                </div>
                 <div className='flex flex-col gap-2'>
                     <span className='text-lg font-semibold'>Cast</span>
                     <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>

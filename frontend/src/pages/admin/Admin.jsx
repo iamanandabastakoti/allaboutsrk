@@ -32,7 +32,7 @@ const Admin = () => {
         // }
     }, [isAdminLogged]);
     return (
-        <div className='flex flex-col min-h-screen'>
+        <div className='flex flex-col min-h-screen w-screen'>
             {
                 loading ?
                     <Lottie animationData={LoadingScreen} className='h-screen' />

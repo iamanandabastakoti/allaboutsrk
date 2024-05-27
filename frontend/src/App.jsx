@@ -27,25 +27,27 @@ const App = () => {
         appPath.pathname !== ('/admin') &&
         <Navbar />
       }
-      <div className={`${appPath.pathname !== ('/admin') && 'py-4 px-3'} w-full min-h-screen`}>
+      <div className={`${appPath.pathname !== ('/admin') && 'py-4 px-3'} w-full min-h-screen laptop:flex laptop:justify-center`}>
         <Sidebar />
         {
           appPath.pathname !== '/' && appPath.pathname !== '/admin' &&
-          <div className='text-3xl text-primaryBg bg-brandColor p-1 w-fit rounded-lg mb-2' onClick={goBack}>
+          <div className='text-3xl text-primaryBg bg-navbarBg laptop:mr-2 p-1 w-fit rounded-lg mb-2 h-fit cursor-pointer hover:brightness-75' onClick={goBack}>
             <IoChevronBackOutline />
           </div>
         }
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='/filmography'>
-            <Route index element={<Filmography />} />
-            <Route path='/filmography/single-genre' element={<SingleGenre />} />
-            <Route path='/filmography/movie/single-movie' element={<SingleMovie />} />
-          </Route>
-          <Route path='/about-us' element={<AboutUs />} />
-          <Route path='/more' element={<More />} />
-          <Route path='/admin' element={<Admin />} />zz
-        </Routes>
+        <div className={`${appPath.pathname !== ('/admin') && 'laptop:w-2/3'}`}>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/filmography'>
+              <Route index element={<Filmography />} />
+              <Route path='/filmography/single-genre' element={<SingleGenre />} />
+              <Route path='/filmography/movie/single-movie' element={<SingleMovie />} />
+            </Route>
+            <Route path='/about-us' element={<AboutUs />} />
+            <Route path='/more' element={<More />} />
+            <Route path='/admin' element={<Admin />} />zz
+          </Routes>
+        </div>
       </div>
       {
         appPath.pathname !== ('/admin') &&

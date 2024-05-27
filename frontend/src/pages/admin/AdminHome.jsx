@@ -29,7 +29,7 @@ const AdminHome = () => {
         },
     ]
     return (
-        <div className='flex min-h-screen bg-[#F0F8FF]'>
+        <div className='flex min-h-screen bg-primaryBg'>
             <AdminSidebar />
             <div className='w-full min-h-full'>
                 <div className='sticky top-0 shadow-2xl z-50 p-2 px-6 flex justify-between items-center text-primaryBg bg-navbarBg min-h-12'>
