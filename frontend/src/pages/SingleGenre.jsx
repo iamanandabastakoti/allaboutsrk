@@ -42,14 +42,14 @@ const SingleGenre = () => {
   }, []);
   return (
     <div className='flex flex-col gap-2'>
-      <h3 className='text-xl text-brandColor font-semibold'>Known For</h3>
-      <div className='flex flex-col gap-4'>
+      <h3 className='text-xl text-brandColor font-semibold laptop:text-3xl'>Known For</h3>
+      <div className='flex flex-col gap-4 laptop:items-center'>
         {/* movie card starts */}
         {
           knownFor.map((props) => {
             return (
-              <Link to={'/filmography/movie/single-movie'} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600'>
-                <img className='w-2/6 h-44 object-cover' src={props.image} alt="poster" />
+              <Link to={'/filmography/movie/single-movie'} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600 laptop:w-3/5 laptop:hover:shadow-2xl shadow-sm'>
+                <img className='w-2/6 h-44 object-cover laptop:object-contain laptop:h-60' src={props.image} alt="poster" />
                 <div className='flex flex-col justify-around text-sm'>
                   <h5 className='font-semibold text-xl text-brandColor'>{props.title}</h5>
                   <span>20 October 1995</span>
