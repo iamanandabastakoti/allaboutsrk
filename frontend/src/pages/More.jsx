@@ -11,20 +11,24 @@ const More = () => {
   const [message, setMessage] = useState('')
 
   const sendMessage = async () => {
-    try {
-      const formData = {
-        name,
-        email,
-        message
+    if ((name && email && message) !== '') {
+      try {
+        const formData = {
+          name,
+          email,
+          message
+        }
+        await axios.post('http://localhost:5000/message', formData);
+        toast.success("Message sent successfully");
+        setName('');
+        setEmail('');
+        setMessage('');
+      } catch (error) {
+        toast.error('Cannot Send Message Right Now!');
+        console.log(error);
       }
-      await axios.post('http://localhost:5000/message', formData);
-      toast.success("Message sent successfully");
-      setName('');
-      setEmail('');
-      setMessage('');
-    } catch (error) {
-      toast.error('Cannot Send Message Right Now!');
-      console.log(error);
+    } else {
+      toast.error('Please fill up the form!');
     }
   }
 
@@ -32,8 +36,8 @@ const More = () => {
     window.scrollTo({ top: '0', behavior: 'smooth' });
   }, []);
   return (
-    <div>
-      <div>
+    <div className='laptop:flex laptop:flex-col laptop:items-center'>
+      <div className='laptop:w-3/5'>
         <h5 className='text-2xl text-center font-MontserratAlternate font-semibold underline'>Contact Us</h5>
         <form className='flex flex-col gap-3'>
           <div>
