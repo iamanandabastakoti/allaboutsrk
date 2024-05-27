@@ -6,6 +6,7 @@ const {
   deleteSingleMessage,
   getSingleMessage,
   deleteAllMessages,
+  readMessage,
 } = require("../controllers/messageControllers");
 
 router
@@ -14,6 +15,6 @@ router
   .post(postMessage)
   .delete(deleteAllMessages);
 router.delete("/delete/:messageID", deleteSingleMessage);
-router.get("/:messageID", getSingleMessage);
+router.route("/:messageID").get(getSingleMessage).patch(readMessage);
 
 module.exports = router;

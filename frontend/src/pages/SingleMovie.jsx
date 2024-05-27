@@ -55,8 +55,8 @@ const SingleMovie = () => {
     return (
         <div>
             <div className='laptop:flex laptop:gap-4 laptop:w-full laptop:mb-4'>
-                <div className='overflow-hidden relative flex items-center w-full min-h-60 laptop:h-fit laptop:w-1/4'>
-                    <img className='left-2 relative z-50 w-28 h-40 object-c0ver laptop:h-96 laptop:w-full' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
+                <div className='overflow-hidden relative flex max-laptop:justify-center items-center w-full min-h-60 laptop:h-fit laptop:w-1/4'>
+                    <img className='left-2 relative z-50 w-40 max-laptop:mb-2 h-auto object-contain laptop:h-full laptop:w-full' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
                     {/* <img className='absolute z-40 object-contain' src="https://media.themoviedb.org/t/p/w533_and_h300_bestv2/90ez6ArvpO8bvpyIngBuwXOqJm5.jpg" alt="bg-image" /> */}
                 </div>
                 <div className='laptop:flex laptop:flex-col laptop:items-start laptop:gap-10 laptop:p-2 laptop:h-full laptop:w-3/4'>

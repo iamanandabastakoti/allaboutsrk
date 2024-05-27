@@ -21,14 +21,12 @@ const AdminMessages = () => {
     await axios.delete(`http://localhost:5000/message/delete/${messageID}`);
     toast.success("Message deleted successfully");
     fetchMessages();
-    // console.log(messageID)
   }
   const [singleMessageContent, setSingleMessageContent] = useState(null);
   const fetchSingleMessage = async (messageID) => {
     const response = await axios.get(`http://localhost:5000/message/${messageID}`);
+    await axios.patch(`http://localhost:5000/message/${messageID}`);
     setSingleMessageContent(response.data);
-    // console.log(singleMessageContent);
-
   }
 
   const [vieMessage, setViewMessage] = useState(false);
@@ -57,12 +55,11 @@ const AdminMessages = () => {
               <th className='w-[20%] p-3 text-start'>Name</th>
               <th className='w-[25%] p-3 text-start'>Email</th>
               <th className='w-[40%] p-3 text-start'>Message</th>
-              {/* <th className='w-[15%] p-3 text-center'>Action</th> */}
             </tr>
             {
               allMessages.map((message, index) => {
                 return (
-                  <tr key={index} className='text-center h-12 border-b-2 border-borderColor hover:bg-borderColor group/message cursor-pointer' onClick={() => messageClick(message._id)}>
+                  <tr key={index} className={`text-center h-12 border-b-2 border-borderColor hover:bg-gray-300 group/message cursor-pointer ${!message.read && 'font-bold brightness-90 text-lg'}`} onClick={() => messageClick(message._id)}>
                     <td className='p-3 text-start'>{message.name}</td>
                     <td className='p-3 text-start'>{message.email}</td>
                     <td className='p-3 text-start relative flex'>
@@ -75,15 +72,7 @@ const AdminMessages = () => {
                         }}>
                         {message.message}
                       </p>
-                      {/* <div className='absolute bg-primaryBg w-20 h-full right-0 top-0 flex justify-evenly items-center group/options invisible group-hover/message:visible shadow-xl'>
-                        <MdDelete className='hover:bg-borderColor p-2 rounded-full text-4xl' onClick={() => deleteSingleMessage(message._id)} />
-                        <IoEye className='hover:bg-borderColor p-2 rounded-full text-4xl' />
-                      </div> */}
                     </td>
-                    {/* <td className='p-3 text-center flex gap-1 items-center'>
-                      <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
-                      <span className='flex justify-center py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => deleteSingleMessage(message._id)}>Delete</span>
-                    </td> */}
                   </tr>
                 )
               })
@@ -92,7 +81,7 @@ const AdminMessages = () => {
       }
       {
         vieMessage &&
-        <ViewMessage setViewMessage={setViewMessage} singleMessageContent={singleMessageContent} deleteSingleMessage={deleteSingleMessage} />
+        <ViewMessage setViewMessage={setViewMessage} singleMessageContent={singleMessageContent} deleteSingleMessage={deleteSingleMessage} fetchMessages={fetchMessages} />
       }
     </div>
   )

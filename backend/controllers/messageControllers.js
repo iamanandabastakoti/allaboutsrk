@@ -56,10 +56,23 @@ const deleteAllMessages = async (req, res) => {
   }
 };
 
+const readMessage = async (req, res) => {
+  try {
+    const { messageID } = req.params;
+    await Message.findByIdAndUpdate({ _id: messageID }, { read: true });
+    res.status(200).json({ message: "Message marked read" });
+    console.log("Message marked read");
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Unable to read message" });
+  }
+};
+
 module.exports = {
   getAllMessage,
   postMessage,
   deleteSingleMessage,
   getSingleMessage,
   deleteAllMessages,
+  readMessage,
 };

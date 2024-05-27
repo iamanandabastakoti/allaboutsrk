@@ -37,14 +37,14 @@ const Navbar = () => {
     ]
     return (
         <div className='sticky top-0 shadow-2xl z-[1000] w-full flex items-center justify-center p-2 bg-navbarBg min-h-14 font-MontserratAlternate'>
-            <div className='w-4/5 flex justify-between items-center'>
+            <div className='laptop:w-4/5 w-full flex justify-between items-center'>
                 <h1 className='font-semibold text-primaryBg text-xl'>All About SRK</h1>
-                <ul className='flex w-1/2 gap-1 text-lg justify-between relative h-fit max-laptop:invisible'>
+                <ul className='flex w-3/5 gap-1 text-md justify-between relative h-fit max-laptop:hidden'>
                     {
                         navbarItems.map((props, index) => {
                             return (
                                 <NavLink key={index} className={({ isActive }) => [
-                                    `py-1 w-1/4 flex justify-center items-center text-primaryBg font-semibold rounded-lg ${isActive && 'bg-primaryBg text-[#4f46e5]'} duration-300 z-[1100] overflow-hidden`
+                                    `py-1 w-1/4 flex justify-center items-center text-primaryBg font-semibold rounded-lg ${isActive && 'bg-primaryBg text-primaryText'} duration-300 z-[1100] overflow-hidden`
                                 ]} to={props.path}>
                                     {props.title}
                                 </NavLink>
@@ -52,7 +52,7 @@ const Navbar = () => {
                         })
                     }
                 </ul>
-                <div className={`text-3xl p-1 ${sidebarOpen && 'bg-borderColor text-navbarBg'} rounded-lg duration-500 laptop:fixed laptop:z-[-1000] laptop:invisible`} onClick={toggleSidebarState}>
+                <div className={`text-3xl text-primaryBg p-1 ${sidebarOpen && 'bg-borderColor text-primaryText'} rounded-lg duration-500 laptop:fixed laptop:z-[-1000] laptop:invisible`} onClick={toggleSidebarState}>
                     <CgMenuRightAlt />
                 </div>
             </div>
