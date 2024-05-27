@@ -59,7 +59,7 @@ const AdminSidebar = () => {
                         {
                             sidebarLists.map((props) => {
                                 return (
-                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${adminSidebarListNumber === props.number ? 'bg-borderColor text-brandColor scale-110' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-lg min-h-10 text-xl`} onClick={() => toggleAdminSidebarListNumber(props.number)}>
+                                    <li className={`flex justify-start px-2 items-center gap-2 cursor-pointer ${adminSidebarListNumber === props.number ? 'bg-borderColor text-brandColor scale-110' : 'hover:bg-borderColor hover:text-brandColor hover:scale-110 text-primaryBg'} duration-300 w-full rounded-md min-h-10 text-xl`} onClick={() => toggleAdminSidebarListNumber(props.number)}>
                                         <span>{props.logo}</span>
                                         <span>{props.name}</span>
                                     </li>
@@ -78,11 +78,11 @@ const AdminSidebar = () => {
             {
                 logoutReq &&
                 <div className='fixed w-full h-full flex justify-center items-center backdrop-brightness-50'>
-                    <div className='min-w-[30vw] min-h-60 rounded-lg bg-brandColor flex flex-col gap-6 justify-center items-center'>
+                    <div className='min-w-[30vw] min-h-60 rounded-lg bg-navbarBg flex flex-col gap-6 justify-center items-center'>
                         <p className='text-3xl font-semibold'>Do you want to logout?</p>
                         <div className='flex justify-evenly w-4/5'>
-                            <div className='text-primaryBg bg-red-600 cursor-pointer px-6 py-2 text-lg rounded-lg duration-300 hover:scale-110' onClick={toggleLogOutReq}>Cancel</div>
-                            <div className='text-primaryBg bg-green-600 cursor-pointer px-6 py-2 text-lg rounded-lg duration-300 hover:scale-110' onClick={adminLogOut}>Confirm</div>
+                            <div className='text-primaryBg bg-red-600 cursor-pointer px-6 py-2 text-lg rounded-lg duration-300 hover:brightness-75' onClick={toggleLogOutReq}>Cancel</div>
+                            <div className='text-primaryBg bg-green-600 cursor-pointer px-6 py-2 text-lg rounded-lg duration-300 hover:brightness-75' onClick={adminLogOut}>Confirm</div>
                         </div>
                     </div>
                 </div>
