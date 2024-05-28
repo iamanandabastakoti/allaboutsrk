@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loading from '/public/animations/loading.json';
 import Lottie from 'lottie-react';
+import UpdateMovie from '../movies/UpdateMovie';
 
 const AdminMovies = () => {
     const dashboardMovies = [
@@ -40,6 +41,11 @@ const AdminMovies = () => {
         setAddMovieDialog(true);
     }
 
+    const [updateMovieDialog, setUpdateMovieDialog] = useState(false);
+    const updateMovieReq = (movieID) => {
+        fetchSingleMovie(movieID);
+    }
+
     const [deleteMovieDialog, setDeleteMovieDialog] = useState(false);
     const [toDeleteId, setToDeleteId] = useState(null);
     const deleteMovieReq = (movieID) => {
@@ -66,6 +72,14 @@ const AdminMovies = () => {
         setTimeout(() => {
             setMovieLoaded(true);
         }, 1000);
+    }
+
+    const [newData, setNewData] = useState([])
+    const fetchSingleMovie = async (movieID) => {
+        const response = await axios.get(`http://localhost:5000/movie/singlemovie/${movieID}`);
+        setNewData(response.data)
+        console.log(response.data)
+        setUpdateMovieDialog(true);
     }
 
     useEffect(() => {
@@ -106,7 +120,7 @@ const AdminMovies = () => {
                                             <td className='p-3'>{movie.director}</td>
                                             <td className='p-3 flex justify-center gap-2'>
                                                 <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>View</span>
-                                                <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300'>Update</span>
+                                                <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => updateMovieReq(movie._id)}>Update</span>
                                                 <span className='py-1 px-3 w-32 rounded-lg border-2 border-buttonColor bg-buttonColor cursor-pointer text-primaryBg hover:bg-primaryBg hover:text-buttonColor duration-300' onClick={() => deleteMovieReq(movie._id)}>Delete</span>
                                             </td>
                                         </tr>
@@ -119,6 +133,10 @@ const AdminMovies = () => {
             {
                 addMovieDialog &&
                 <AddMovie setAddMovieDialog={setAddMovieDialog} />
+            }
+            {
+                updateMovieDialog &&
+                <UpdateMovie setUpdateMovieDialog={setUpdateMovieDialog} newData={newData} />
             }
             {
                 deleteMovieDialog &&

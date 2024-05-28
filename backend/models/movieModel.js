@@ -29,6 +29,7 @@ const MovieSchema = new mongoose.Schema({
       },
       role: {
         type: String,
+        default: "",
       },
     },
   ],
