@@ -27,9 +27,9 @@ const Footer = () => {
                 </span>
                 <div className='flex gap-6 text-lg'>
                     {
-                        mySocials.map((props) => {
+                        mySocials.map((props, index) => {
                             return (
-                                <a href={props.link} target='_blank'>
+                                <a key={index} href={props.link} target='_blank'>
                                     {props.icon}
                                 </a>
                             )

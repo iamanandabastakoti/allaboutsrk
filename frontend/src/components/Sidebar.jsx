@@ -34,9 +34,9 @@ const Sidebar = () => {
         <div className={`fixed z-[999] top-0 ${sidebarOpen ? 'left-0' : 'left-[-100%]'} duration-700 pt-16 px-3 w-full h-screen bg-navbarBg text-primaryBg`}>
             <div className='flex flex-col gap-3 text-xl'>
                 {
-                    sidebarItems.map((props) => {
+                    sidebarItems.map((props, index) => {
                         return (
-                            <NavLink className={({ isActive }) => [
+                            <NavLink key={index} className={({ isActive }) => [
                                 `py-2 px-2 border-b border-borderColor ${isActive && 'px-5 bg-primaryBg text-brandColor font-semibold rounded-lg'} duration-500`
                             ]} to={props.path} onClick={toggleSidebarState}>
                                 {props.title}

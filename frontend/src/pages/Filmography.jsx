@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import axios from 'axios';
 
 const Filmography = () => {
 
@@ -41,6 +42,16 @@ const Filmography = () => {
       title: 'Ra.One'
     },
   ]
+
+  const [allMovies, setAllMovies] = useState([]);
+  const fetchAllMovies = async () => {
+    const response = await axios.get(`http://localhost:5000/movie/allmovies`);
+    setAllMovies(response.data);
+  }
+
+  useEffect(() => {
+    fetchAllMovies();
+  }, []);
   return (
     <div className='flex flex-col gap-3'>
       <h5 className='text-2xl text-center font-MontserratAlternate font-semibold underline'>Filmography</h5>
@@ -57,9 +68,9 @@ const Filmography = () => {
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
-              knownFor.map((props) => {
+              knownFor.map((props, index) => {
                 return (
-                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                  <Link key={index} to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
                     <img className='rounded-lg object-cover' src={props.image} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>
@@ -74,7 +85,7 @@ const Filmography = () => {
         <div className='flex flex-col gap-2 pl-2'>
           <div className='flex justify-between'>
             <h4 className='text-xl font-semibold'>All Movies</h4>
-            <Link to={'/filmography/single-genre'} className='text-sm flex items-center text-brandColor font-semibold'>
+            <Link to={'/filmography/allMovies'} className='text-sm flex items-center text-brandColor font-semibold'>
               View All
               <MdOutlineArrowForwardIos />
             </Link>
@@ -82,10 +93,10 @@ const Filmography = () => {
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
-              knownFor.map((props) => {
+              allMovies.map((props, index) => {
                 return (
-                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
-                    <img className='rounded-lg object-cover' src={props.image} alt="" />
+                  <Link key={index} to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                    <img className='rounded-lg object-cover h-56 w-full' src={props.poster} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>
                 )
@@ -107,9 +118,9 @@ const Filmography = () => {
           <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
             {/* movie card start */}
             {
-              knownFor.map((props) => {
+              knownFor.map((props, index) => {
                 return (
-                  <Link to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
+                  <Link key={index} to={'/filmography/movie/single-movie'} className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
                     <img className='rounded-lg object-cover' src={props.image} alt="" />
                     <span className='px-2 text-sm'>{props.title}</span>
                   </Link>

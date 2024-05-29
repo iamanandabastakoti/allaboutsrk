@@ -2,7 +2,7 @@ const Movie = require("../models/movieModel");
 
 //definig the functions
 const getAllMovies = async (req, res) => {
-  const movieData = await Movie.find({});
+  const movieData = await Movie.find().sort({ createdAt: "desc" });
   res.status(200).json(movieData);
 };
 

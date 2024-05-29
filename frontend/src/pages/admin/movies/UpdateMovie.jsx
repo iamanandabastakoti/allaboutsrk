@@ -200,7 +200,7 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData, movieID, fetchAllMovies })
             <div
                 className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50"
             ></div>
-            <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-h-[100vh] overflow-y-auto z-50 flex flex-col items-center rounded-lg mt-2'>
+            <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-h-[100vh] overflow-y-auto z-50 flex flex-col items-center rounded-lg mt-2 max-laptop:w-full'>
                 <div className='bg-primaryBg text-primaryText overflow-y-auto w-full pb-6'>
                     <div className='flex z-50 sticky top-0 bg-primaryBg justify-between items-center p-2 mb-4 shadow-xl px-6'>
                         <div className='flex justify-center text-xl'>Update the movie details below</div>
