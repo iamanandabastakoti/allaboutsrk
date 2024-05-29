@@ -5,7 +5,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const AddMovie = ({ setAddMovieDialog }) => {
+const AddMovie = ({ setAddMovieDialog, fetchAllMovies }) => {
     const releaseMonths = [
         {
             name: 'January'
@@ -154,13 +154,14 @@ const AddMovie = ({ setAddMovieDialog }) => {
                 producer: producerData,
                 production_company: productionData
             }
-            await axios.post("http://localhost:5000/movie/addmovie", movieData)
-            console.log("Movie Added Successfully")
-            setAddMovieDialog(false)
-            toast.success("Movie Added Successfully")
+            await axios.post("http://localhost:5000/movie/addmovie", movieData);
+            console.log("Movie Added Successfully");
+            fetchAllMovies();
+            setAddMovieDialog(false);
+            toast.success("Movie Added Successfully");
         } catch (error) {
-            console.log("Error adding movie", error)
-            toast.error("Unable to add the movie!")
+            console.log("Error adding movie", error);
+            toast.error("Unable to add the movie!");
         }
     }
 

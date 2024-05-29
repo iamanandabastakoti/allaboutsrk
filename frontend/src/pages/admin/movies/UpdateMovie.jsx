@@ -160,8 +160,8 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData, movieID, fetchAllMovies })
             setUpdateMovieDialog(false);
             toast.success("Movie Updated Successfully");
         } catch (error) {
-            console.log("Error updating movie", error)
-            toast.error("Unable to update the movie!")
+            console.log("Error updating movie", error);
+            toast.error("Unable to update the movie!");
         }
     }
 

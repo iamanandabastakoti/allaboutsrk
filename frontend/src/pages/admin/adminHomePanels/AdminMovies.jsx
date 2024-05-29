@@ -134,7 +134,7 @@ const AdminMovies = () => {
             </div>
             {
                 addMovieDialog &&
-                <AddMovie setAddMovieDialog={setAddMovieDialog} />
+                <AddMovie setAddMovieDialog={setAddMovieDialog} fetchAllMovies={fetchAllMovies} />
             }
             {
                 updateMovieDialog &&
