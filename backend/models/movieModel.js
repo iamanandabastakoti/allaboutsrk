@@ -9,6 +9,10 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  knownFor: {
+    type: Boolean,
+    default: false,
+  },
   overview: {
     type: String,
     required: true,
