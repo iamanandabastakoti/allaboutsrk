@@ -74,9 +74,11 @@ const AdminMovies = () => {
         }, 1000);
     }
 
-    const [newData, setNewData] = useState([])
+    const [newData, setNewData] = useState([]);
+    const [toUpdateId, setToUpdateId] = useState(null);
     const fetchSingleMovie = async (movieID) => {
         const response = await axios.get(`http://localhost:5000/movie/singlemovie/${movieID}`);
+        setToUpdateId(movieID);
         setNewData(response.data)
         console.log(response.data)
         setUpdateMovieDialog(true);
@@ -136,7 +138,7 @@ const AdminMovies = () => {
             }
             {
                 updateMovieDialog &&
-                <UpdateMovie setUpdateMovieDialog={setUpdateMovieDialog} newData={newData} />
+                <UpdateMovie setUpdateMovieDialog={setUpdateMovieDialog} newData={newData} movieID={toUpdateId} fetchAllMovies={fetchAllMovies} />
             }
             {
                 deleteMovieDialog &&

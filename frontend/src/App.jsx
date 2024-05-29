@@ -63,7 +63,7 @@ const App = () => {
         rtl={false}
         pauseOnFocusLoss={false}
         draggable
-        pauseOnHover
+        pauseOnHover={false}
         theme="light"
         transition={Slide}
       />

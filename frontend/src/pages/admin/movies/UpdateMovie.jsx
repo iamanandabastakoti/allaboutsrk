@@ -5,7 +5,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const UpdateMovie = ({ setUpdateMovieDialog, newData }) => {
+const UpdateMovie = ({ setUpdateMovieDialog, newData, movieID, fetchAllMovies }) => {
     const releaseMonths = [
         {
             name: 'January'
@@ -140,7 +140,7 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData }) => {
     };
     // console.log(releaseDate)
 
-    const submitMovie = async () => {
+    const updateMovie = async (movieID) => {
         try {
             const movieData = {
                 poster,
@@ -154,13 +154,14 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData }) => {
                 producer: producerData,
                 production_company: productionData
             }
-            await axios.post("http://localhost:5000/movie/addmovie", movieData)
-            console.log("Movie Added Successfully")
-            setAddMovieDialog(false)
-            toast.success("Movie Added Successfully")
+            await axios.patch(`http://localhost:5000/movie/update/${movieID}`, movieData);
+            console.log("Movie Updated Successfully");
+            fetchAllMovies();
+            setUpdateMovieDialog(false);
+            toast.success("Movie Updated Successfully");
         } catch (error) {
-            console.log("Error adding movie", error)
-            toast.error("Unable to add the movie!")
+            console.log("Error updating movie", error)
+            toast.error("Unable to update the movie!")
         }
     }
 
@@ -202,7 +203,7 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData }) => {
             <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-h-[100vh] overflow-y-auto z-50 flex flex-col items-center rounded-lg mt-2'>
                 <div className='bg-primaryBg text-primaryText overflow-y-auto w-full pb-6'>
                     <div className='flex z-50 sticky top-0 bg-primaryBg justify-between items-center p-2 mb-4 shadow-xl px-6'>
-                        <div className='flex justify-center text-xl'>Enter the movie details below</div>
+                        <div className='flex justify-center text-xl'>Update the movie details below</div>
                         <span className='p-1 hover:bg-borderColor hover:text- rounded-lg duration-200'>
                             <RxCross1 className='text-xl cursor-pointer' onClick={() => setUpdateMovieDialog(false)} />
                         </span>
@@ -320,7 +321,7 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData }) => {
                             </span>
                         </div>
                         <div className='flex justify-center gap-6 items-center'>
-                            <span className='w-full flex justify-center items-center py-2 px-3 rounded-lg border-2 border-green-600 bg-green-600 text-primaryBg cursor-pointer hover:brightness-75 duration-300' onClick={submitMovie}>Confirm</span>
+                            <span className='w-full flex justify-center items-center py-2 px-3 rounded-lg border-2 border-green-600 bg-green-600 text-primaryBg cursor-pointer hover:brightness-75 duration-300' onClick={() => updateMovie(movieID)}>Confirm</span>
                         </div>
                     </form>
                 </div>
