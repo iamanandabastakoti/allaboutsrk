@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { logInAdmin } from '../../redux/slices/AdminSlice';
+import axios from 'axios';
 
 const AdminLogin = () => {
     const [showPass, setShowPass] = useState(false);
@@ -19,9 +20,11 @@ const AdminLogin = () => {
         })
     }
     const dispatch = useDispatch();
-    const logIN = () => {
+    const logIN = async () => {
         if ((data.username && data.password) !== '') {
-            if (data.username === `${import.meta.env.VITE_USERNAME}` && data.password === `${import.meta.env.VITE_PASSWORD}`) {
+            const response = await axios.post(`http://localhost:5000/admin/login`, data);
+            // console.log(response.data);
+            if (response.data === 'Authorized') {
                 localStorage.setItem('authData', JSON.stringify(data));
                 setWrongAuth(false);
                 setEmptyField(false);
@@ -64,7 +67,7 @@ const AdminLogin = () => {
                         </div>
                     </div>
                 </form>
-                <button className='w-full bg-buttonColor p-2 rounded-lg flex justify-center items-center gap-1 text-lg hover:brightness-75' onClick={logIN}>
+                <button className='w-full bg-buttonColor p-2 rounded-lg flex justify-center items-center gap-1 text-lg hover:brightness-75 active:scale-90 duration-300' onClick={logIN}>
                     Log In
                 </button>
             </div>

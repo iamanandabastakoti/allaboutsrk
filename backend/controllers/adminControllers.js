@@ -1,4 +1,5 @@
 const Admin = require("../models/adminModel");
+const bcrypt = require("bcrypt");
 
 const getAdmin = async (req, res) => {
   const adminData = await Admin.find({});
@@ -8,10 +9,13 @@ const getAdmin = async (req, res) => {
 const registerAdmin = async (req, res) => {
   try {
     const { name, username, password, profilePic } = req.body;
+    //hashing password
+    const salt = await bcrypt.genSalt(10);
+    const hashed_password = await bcrypt.hash(password, salt);
     const newAdmin = await Admin.create({
       name,
       username,
-      password,
+      password: hashed_password,
       profilePic,
     });
     res.status(200).json(newAdmin);
@@ -27,12 +31,15 @@ const updateAdmin = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, username, password, profilePic } = req.body;
+    //hashing password
+    const salt = await bcrypt.genSalt(10);
+    const hashed_password = await bcrypt.hash(password, salt);
     await Admin.findByIdAndUpdate(
       { _id: id },
       {
         name,
         username,
-        password,
+        password: hashed_password,
         profilePic,
       }
     );
@@ -63,7 +70,9 @@ const adminLogin = async (req, res) => {
     if (!admin) {
       res.json({ message: "Username not found" });
     } else {
-      if (password === admin.password) {
+      //comaparing user entered password with stored hashed_password in db
+      const isAuthorized = await bcrypt.compare(password, admin.password);
+      if (isAuthorized) {
         res.json("Authorized");
       } else {
         res.json("NotAuthorized");

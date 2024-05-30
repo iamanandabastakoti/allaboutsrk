@@ -17,7 +17,7 @@ const Admin = () => {
         const localAuthData = JSON.parse(localStorage.getItem('authData'));
         const response = await axios.post("http://localhost:5000/admin/login", localAuthData);
         // console.log(response.data);
-        if (response.data == 'Authorized') {
+        if (response.data === 'Authorized') {
             dispatch(logInAdmin());
         }
         setTimeout(() => {
