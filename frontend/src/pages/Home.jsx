@@ -64,9 +64,9 @@ const Home = () => {
                 <span className='text-xl font-semibold'>Personal Info</span>
                 <div className='flex justify-around flex-wrap gap-6'>
                     {
-                        info.map((props) => {
+                        info.map((props, index) => {
                             return (
-                                <div className='w-[40%] flex flex-col'>
+                                <div key={index} className='w-[40%] flex flex-col'>
                                     <span className='font-semibold'>{props.title}</span>
                                     <span className='flex flex-wrap text-sm'>{props.content}</span>
                                 </div>
@@ -78,9 +78,9 @@ const Home = () => {
             <div className='flex flex-col gap-2 '>
                 <span className='text-xl font-semibold'>Biography</span>
                 {
-                    bio.map((props) => {
+                    bio.map((props, index) => {
                         return (
-                            <div className='text-sm text-justify'>
+                            <div key={index} className='text-sm text-justify'>
                                 {props.content}
                             </div>
                         )

@@ -1,73 +1,57 @@
-import React, { useEffect } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const SingleMovie = () => {
-    const movieCast = [
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/tCEppfUu0g2Luu0rS5VKMoL4eSw.jpg',
-            name: 'Shah Rukh Khan',
-            character: 'Raj Malhotra',
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/h4m0TkDuEMCUNaPrQxMRyFb2AQ7.jpg',
-            name: 'Kajol',
-            character: 'Simran Singh',
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/uhMGFS7tuG71LDv2wk9LfZZ4EG6.jpg',
-            name: 'Amrish Puri',
-            character: 'Chaudhry Baldev Singh',
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/tJdqL4BRSAWVFX1W6cmwxFs9IFh.jpg',
-            name: 'Farida Jalal',
-            character: "Lajwanti 'Lajjo' Singh",
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/f7hWJ4tvzR7uXmYoTiB41TpQ2NZ.jpg',
-            name: 'Anupam Kher',
-            character: 'Dharamvir Malhotra',
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/evHnj6s0Z2sbV1Mq0dfXxQQU8Mf.jpg',
-            name: 'Pooja Ruparel',
-            character: "Rajeshwari 'Chutki' Singh",
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/paTrHCbnwMxBZREfoGcfY5TlvyY.jpg',
-            name: 'Parmeet Sethi',
-            character: 'Kuljeet Singh',
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/AaXbQI0fAoTW4Qjg4dAtC5xkK1G.jpg',
-            name: 'Satish Shah',
-            character: "Ajit Singh, Kuljeet's Father",
-        },
-        {
-            image: 'https://media.themoviedb.org/t/p/w138_and_h175_face/l50tq0OwzIxE4Z5JXDUSQvqCltN.jpg',
-            name: 'Mandira Bedi',
-            character: "Preeti Singh, Kuljeet's Sister",
-        },
-    ]
+    const { movieID } = useParams();
+
+    const [singleMovie, setSingleMovie] = useState([]);
+    const [movieCast, setMovieCast] = useState([]);
+    const [release, setRelease] = useState([]);
+    const [genre, setGenre] = useState([]);
+    const [producer, setProducer] = useState([]);
+    const [production, setProduction] = useState([]);
+
+    const fetchSingleMovie = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/movie/singlemovie/${movieID}`);
+            setSingleMovie(response.data);
+            // console.log(singleMovie);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     useEffect(() => {
+        fetchSingleMovie();
         window.scrollTo({ top: '0', behavior: 'smooth' });
     }, []);
+
+    useEffect(() => {
+        if (singleMovie && singleMovie.cast && singleMovie.release_date && singleMovie.genre && singleMovie.producer && singleMovie.production_company) {
+            setMovieCast(singleMovie.cast);
+            setRelease(singleMovie.release_date);
+            setGenre(singleMovie.genre);
+            setProducer(singleMovie.producer);
+            setProduction(singleMovie.production_company);
+        }
+    }, [singleMovie])
     return (
         <div>
             <div className='laptop:flex laptop:gap-4 laptop:w-full laptop:mb-4'>
                 <div className='overflow-hidden relative flex max-laptop:justify-center items-center w-full min-h-60 laptop:h-fit laptop:w-1/4'>
-                    <img className='left-2 relative z-50 w-40 max-laptop:mb-2 h-auto object-contain laptop:h-full laptop:w-full' src="https://media.themoviedb.org/t/p/w150_and_h225_bestv2/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg" alt="main-poster" />
-                    {/* <img className='absolute z-40 object-contain' src="https://media.themoviedb.org/t/p/w533_and_h300_bestv2/90ez6ArvpO8bvpyIngBuwXOqJm5.jpg" alt="bg-image" /> */}
+                    <img className='left-2 relative z-50 w-40 max-laptop:mb-2 h-auto object-contain laptop:h-full laptop:w-full' src={singleMovie.poster} alt="main-poster" />
                 </div>
                 <div className='laptop:flex laptop:flex-col laptop:items-start laptop:gap-10 laptop:p-2 laptop:h-full laptop:w-3/4'>
-                    <h4 className='text-xl text-center font-semibold laptop:text-3xl'>Dilwale Dulhania Le Jayenge (1995)</h4>
+                    <h4 className='text-xl text-center font-semibold laptop:text-3xl'>{singleMovie.title}</h4>
                     <div className='flex flex-col'>
                         <span className='font-semibold text-lg laptop:text-2xl'>Overview</span>
-                        <span className='text-justify laptop:text-lg'>Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.</span>
+                        <span className='text-justify laptop:text-lg'>{singleMovie.overview}</span>
                     </div>
-                    <div className='flex flex-col laptop:text-lg'>
-                        <span>Aditya Chopra</span>
-                        <span>Director, Screenplay, Story</span>
+                    <div className='flex flex-col laptop:text-lg max-laptop:py-2 max-laptop:flex-col-reverse'>
+                        <span className='laptop:font-semibold'>{singleMovie.director}</span>
+                        <span className='max-laptop:font-semibold'>Director</span>
                     </div>
                 </div>
             </div>
@@ -76,13 +60,13 @@ const SingleMovie = () => {
                     <span className='text-lg font-semibold'>Cast</span>
                     <div className='relative overflow-auto scroll-smooth pb-3 flex gap-3 justify-start'>
                         {
-                            movieCast.map((props) => {
+                            movieCast.map((props, index) => {
                                 return (
-                                    <div className='flex flex-col items-start gap-2 min-h-60 min-w-36 max-w-36 overflow-hidden rounded-lg'>
-                                        <img className='rounded-lg object-cover' src={props.image} alt="" />
+                                    <div key={index} className='flex flex-col items-start gap-2 min-h-56 min-w-36 max-w-36 overflow-hidden rounded-lg bg-borderColor p-1'>
+                                        <img className='rounded-lg object-cover w-full h-3/5 bg-gray-500' src='https://imgs.search.brave.com/ww5k7GZKu3CaMGwAsbPlFlyM7ogaHe2ZnHdOvxrz9kE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0Lzk4LzcyLzQz/LzM2MF9GXzQ5ODcy/NDMyM19Gb25BeThM/WVlmRDFCVUMwYmNL/NTZhb1l3dUxISjJH/ZS5qcGc' alt="Image" />
                                         <div className='flex flex-col'>
                                             <span className='px-2 text-md'>{props.name}</span>
-                                            <span className='px-2 text-sm text-gray-500'>{props.character}</span>
+                                            <span className='px-2 text-sm text-gray-500'>{props.role}</span>
                                         </div>
                                     </div>
                                 )
@@ -93,23 +77,71 @@ const SingleMovie = () => {
                 <div className='flex flex-col gap-4'>
                     <div className='flex flex-col'>
                         <span className='text-lg font-semibold'>Release Date</span>
-                        <span className='text-sm text-gray-600 px-2'>20 October 1995</span>
+                        {
+                            release.map((props, index) => {
+                                return (
+                                    <div key={index} className='text-sm text-gray-600 px-2 flex items-center gap-1'>
+                                        <span>{props.date}</span>
+                                        <span>{props.month}</span>
+                                        <span>{props.year}</span>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                     <div className='flex flex-col'>
                         <span className='text-lg font-semibold'>Runtime</span>
-                        <span className='text-sm text-gray-600 px-2'>189 minutes</span>
+                        <span className='text-sm text-gray-600 px-2'>{singleMovie.runtime} minutes</span>
                     </div>
                     <div className='flex flex-col'>
                         <span className='text-lg font-semibold'>Genre</span>
                         <div className='text-sm text-gray-600 px-2 flex gap-3'>
-                            <span>Classical</span>
-                            <span>Drama</span>
-                            <span>Romance</span>
+                            {
+                                genre.map((props, index) => {
+                                    return (
+                                        <span key={index}>{props.name}</span>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div className='flex flex-col'>
+                        <span className='text-lg font-semibold'>Producer</span>
+                        <div className='text-sm text-gray-600 px-2 flex gap-4'>
+                            {
+                                producer.map((props, index) => {
+                                    return (
+                                        <span key={index}>
+                                            {
+                                                props.name !== '' ?
+                                                    <span>{props.name}</span> : <span>No data</span>
+                                            }
+                                        </span>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div className='flex flex-col'>
+                        <span className='text-lg font-semibold'>Production Company</span>
+                        <div className='text-sm text-gray-600 px-2 flex gap-4'>
+                            {
+                                production.map((props, index) => {
+                                    return (
+                                        <span key={index}>
+                                            {
+                                                props.name !== '' ?
+                                                    <span>{props.name}</span> : <span>No data</span>
+                                            }
+                                        </span>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

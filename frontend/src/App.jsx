@@ -41,7 +41,7 @@ const App = () => {
             <Route path='/filmography'>
               <Route index element={<Filmography />} />
               <Route path='/filmography/:singleGenre' element={<SingleGenre />} />
-              <Route path='/filmography/movie/single-movie' element={<SingleMovie />} />
+              <Route path='/filmography/movie/:movieID' element={<SingleMovie />} />
             </Route>
             <Route path='/about-us' element={<AboutUs />} />
             <Route path='/more' element={<More />} />
