@@ -31,7 +31,7 @@ const Sidebar = () => {
         dispatch(toggleSidebar(!sidebarOpen));
     }
     return (
-        <div className={`fixed z-[999] top-0 ${sidebarOpen ? 'left-0' : 'left-[-100%]'} duration-700 pt-16 px-3 w-full h-screen bg-navbarBg text-primaryBg`}>
+        <div className={`fixed z-[999] top-0 ${sidebarOpen ? 'left-0' : 'left-[-100%]'} duration-500 pt-16 px-3 w-full h-screen bg-navbarBg text-primaryBg`}>
             <div className='flex flex-col gap-3 text-xl'>
                 {
                     sidebarItems.map((props, index) => {
