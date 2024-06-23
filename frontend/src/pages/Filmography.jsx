@@ -45,7 +45,7 @@ const Filmography = () => {
 
   const [allMovies, setAllMovies] = useState([]);
   const fetchAllMovies = async () => {
-    const response = await axios.get(`http://localhost:5000/movie/allmovies`);
+    const response = await axios.get(`${import.meta.env.VITE_API}/movie/allmovies`);
     setAllMovies(response.data);
   }
 

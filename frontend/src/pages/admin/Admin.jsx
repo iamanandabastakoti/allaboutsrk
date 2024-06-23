@@ -15,7 +15,7 @@ const Admin = () => {
     const [loading, setLoading] = useState(true);
     const loginFunc = async () => {
         const localAuthData = JSON.parse(localStorage.getItem('authData'));
-        const response = await axios.post("http://localhost:5000/admin/login", localAuthData);
+        const response = await axios.post(`${import.meta.env.VITE_API}/admin/login`, localAuthData);
         // console.log(response.data);
         if (response.data === 'Authorized') {
             dispatch(logInAdmin());

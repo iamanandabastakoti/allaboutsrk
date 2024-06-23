@@ -18,7 +18,7 @@ const More = () => {
           email,
           message
         }
-        await axios.post('http://localhost:5000/message', formData);
+        await axios.post(`${import.meta.env.VITE_API}/message`, formData);
         toast.success("Message sent successfully");
         setName('');
         setEmail('');

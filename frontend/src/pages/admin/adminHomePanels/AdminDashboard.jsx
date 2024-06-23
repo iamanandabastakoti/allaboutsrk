@@ -39,8 +39,8 @@ const AdminDashboard = () => {
     const [totalMovies, setTotalMovies] = useState(null);
     const [totalMessages, setTotalMessages] = useState(null);
     const fetchData = async () => {
-        const moviedata = await axios.get('http://localhost:5000/movie/allmovies');
-        const messageData = await axios.get('http://localhost:5000/message');
+        const moviedata = await axios.get(`${import.meta.env.VITE_API}/movie/allmovies`);
+        const messageData = await axios.get(`${import.meta.env.VITE_API}/message`);
         setTotalMovies(moviedata.data.length);
         setTotalMessages(messageData.data.length);
 

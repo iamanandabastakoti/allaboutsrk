@@ -54,7 +54,7 @@ const AdminMovies = () => {
     }
     const deleteMovie = async () => {
         try {
-            await axios.delete(`http://localhost:5000/movie/delete/${toDeleteId}`);
+            await axios.delete(`${import.meta.env.VITE_API}/movie/delete/${toDeleteId}`);
             setDeleteMovieDialog(false);
             toast.success("Movie Deleted Successfully");
             fetchAllMovies();
@@ -67,7 +67,7 @@ const AdminMovies = () => {
     const [allMovies, setAllMovies] = useState([]);
     const fetchAllMovies = async () => {
         setMovieLoaded(false);
-        const response = await axios.get(`http://localhost:5000/movie/allmovies`);
+        const response = await axios.get(`${import.meta.env.VITE_API}/movie/allmovies`);
         setAllMovies(response.data);
         setTimeout(() => {
             setMovieLoaded(true);
@@ -77,7 +77,7 @@ const AdminMovies = () => {
     const [newData, setNewData] = useState([]);
     const [toUpdateId, setToUpdateId] = useState(null);
     const fetchSingleMovie = async (movieID) => {
-        const response = await axios.get(`http://localhost:5000/movie/singlemovie/${movieID}`);
+        const response = await axios.get(`${import.meta.env.VITE_API}/movie/singlemovie/${movieID}`);
         setToUpdateId(movieID);
         setNewData(response.data)
         console.log(response.data)

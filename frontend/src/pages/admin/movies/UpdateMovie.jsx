@@ -154,7 +154,7 @@ const UpdateMovie = ({ setUpdateMovieDialog, newData, movieID, fetchAllMovies })
                 producer: producerData,
                 production_company: productionData
             }
-            await axios.patch(`http://localhost:5000/movie/update/${movieID}`, movieData);
+            await axios.patch(`${import.meta.env.VITE_API}/movie/update/${movieID}`, movieData);
             console.log("Movie Updated Successfully");
             fetchAllMovies();
             setUpdateMovieDialog(false);

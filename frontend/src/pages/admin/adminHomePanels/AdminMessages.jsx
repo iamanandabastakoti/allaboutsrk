@@ -10,21 +10,21 @@ const AdminMessages = () => {
   const [allMessages, setAllMessages] = useState([]);
   const fetchMessages = async () => {
     setMessageLoaded(false);
-    const response = await axios.get('http://localhost:5000/message');
+    const response = await axios.get(`${import.meta.env.VITE_API}/message`);
     setAllMessages(response.data);
     setTimeout(() => {
       setMessageLoaded(true);
     }, 1000);
   }
   const deleteSingleMessage = async (messageID) => {
-    await axios.delete(`http://localhost:5000/message/delete/${messageID}`);
+    await axios.delete(`${import.meta.env.VITE_API}/message/delete/${messageID}`);
     toast.success("Message deleted successfully");
     fetchMessages();
   }
   const [singleMessageContent, setSingleMessageContent] = useState(null);
   const fetchSingleMessage = async (messageID) => {
-    const response = await axios.get(`http://localhost:5000/message/${messageID}`);
-    await axios.patch(`http://localhost:5000/message/${messageID}`);
+    const response = await axios.get(`${import.meta.env.VITE_API}/message/${messageID}`);
+    await axios.patch(`${import.meta.env.VITE_API}/message/${messageID}`); //this is for updating the unread message as read message
     setSingleMessageContent(response.data);
   }
 

@@ -41,7 +41,7 @@ const SingleGenre = () => {
 
   const [genreMovies, setGenreMovies] = useState([]);
   const fetchAllMovies = async () => {
-    const response = await axios.get(`http://localhost:5000/movie/allmovies`);
+    const response = await axios.get(`${import.meta.env.VITE_API}/movie/allmovies`);
     setGenreMovies(response.data);
   }
   useEffect(() => {
@@ -60,7 +60,7 @@ const SingleGenre = () => {
         {
           genreMovies.map((props, index) => {
             return (
-              <Link key={index} to={'/filmography/movie/single-movie'} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600 laptop:w-3/5 laptop:hover:shadow-2xl shadow-sm'>
+              <Link key={index} to={`/filmography/movie/${props._id}`} className='border border-borderColor rounded-lg p-2 flex gap-2 overflow-hidden text-gray-600 laptop:w-3/5 laptop:hover:shadow-2xl shadow-sm'>
                 <img className='w-2/6 h-44 object-cover laptop:object-contain laptop:h-60' src={props.poster} alt="poster" />
                 <div className='flex flex-col justify-around text-sm'>
                   <h5 className='font-semibold text-xl text-brandColor'>{props.title}</h5>

@@ -154,7 +154,7 @@ const AddMovie = ({ setAddMovieDialog, fetchAllMovies }) => {
                 producer: producerData,
                 production_company: productionData
             }
-            await axios.post("http://localhost:5000/movie/addmovie", movieData);
+            await axios.post(`${import.meta.env.VITE_API}/movie/addmovie`, movieData);
             // console.log("Movie Added Successfully");
             fetchAllMovies();
             setAddMovieDialog(false);

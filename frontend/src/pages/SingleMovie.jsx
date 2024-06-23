@@ -14,7 +14,7 @@ const SingleMovie = () => {
 
     const fetchSingleMovie = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/movie/singlemovie/${movieID}`);
+            const response = await axios.get(`${import.meta.env.VITE_API}/movie/singlemovie/${movieID}`);
             setSingleMovie(response.data);
             // console.log(singleMovie);
         } catch (error) {
