@@ -44,12 +44,18 @@ const SingleGenre = () => {
     const response = await axios.get(`${import.meta.env.VITE_API}/movie/allmovies`);
     setGenreMovies(response.data);
   }
+  const fetchSpecificGenreMovies = async (genre) => {
+    const genreName = genre.charAt(0).toUpperCase() + genre.slice(1)
+    const response = await axios.get(`${import.meta.env.VITE_API}/movie/genre/${genreName}`);
+    setGenreMovies(response.data);
+  }
   useEffect(() => {
     window.scrollTo({ top: '0', behavior: 'smooth' });
-    if (singleGenre === 'allMovies') {
+    if (singleGenre === 'allmovies') {
       fetchAllMovies();
     } else {
-      setGenreMovies(knownFor);
+      // setGenreMovies(knownFor);
+      fetchSpecificGenreMovies(singleGenre)
     }
   }, []);
   return (
