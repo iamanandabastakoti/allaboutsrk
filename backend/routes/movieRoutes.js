@@ -6,6 +6,7 @@ const {
   getSingleMovie,
   updateMovie,
   deleteMovie,
+  getSpecificGenreMovies,
 } = require("../controllers/movieControllers");
 
 //defining the endpoints
@@ -14,5 +15,6 @@ router.post("/addmovie", addMovie);
 router.get("/singlemovie/:movieID", getSingleMovie);
 router.patch("/update/:movieID", updateMovie);
 router.delete("/delete/:movieID", deleteMovie);
+router.get("/genre/:genrename",getSpecificGenreMovies);
 
 module.exports = router;

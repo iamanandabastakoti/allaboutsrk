@@ -104,10 +104,24 @@ const deleteMovie = async (req, res) => {
   }
 };
 
+const getSpecificGenreMovies = async (req, res) => {
+  try {
+    const { genrename } = req.params;
+    const movieData = await Movie.find({ "genre.name": genrename });
+    res.status(200).json(movieData);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(400)
+      .json({ message: "Unable to find the movies of this genre" });
+  }
+};
+
 module.exports = {
   getAllMovies,
   addMovie,
   getSingleMovie,
   updateMovie,
   deleteMovie,
+  getSpecificGenreMovies,
 };
